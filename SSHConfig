@@ -1,0 +1,5 @@
+Host pc.homoantiquum.com
+ProxyCommand cloudflared access ssh --hostname %h
+
+Host deck.homoantiquum.com
+ProxyCommand cloudflared access ssh --hostname %h

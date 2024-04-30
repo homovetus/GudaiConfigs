@@ -1,0 +1,45 @@
+# change windows focus
+alt - n : yabai -m window --focus west
+alt - e : yabai -m window --focus south
+alt - i : yabai -m window --focus north
+alt - o : yabai -m window --focus east
+
+# move windows
+alt - l : yabai -m window --swap west
+alt - u : yabai -m window --swap south
+alt - y : yabai -m window --swap north
+alt - 0x29 : yabai -m window --swap east
+
+alt - 1 : yabai -m window --space 1 ; skhd -k "ctrl - 1"
+alt - 2 : yabai -m window --space 2 ; skhd -k "ctrl - 2"
+alt - 3 : yabai -m window --space 3 ; skhd -k "ctrl - 3"
+alt - 4 : yabai -m window --space 4 ; skhd -k "ctrl - 4"
+alt - 5 : yabai -m window --space 5 ; skhd -k "ctrl - 5"
+alt - 6 : yabai -m window --space 6 ; skhd -k "ctrl - 6"
+alt - 7 : yabai -m window --space 7 ; skhd -k "ctrl - 7"
+alt - 8 : yabai -m window --space 8 ; skhd -k "ctrl - 8"
+alt - 9 : yabai -m window --space 9 ; skhd -k "ctrl - 9"
+
+# insert windows
+shift + alt - l : yabai -m window --warp west
+shift + alt - u : yabai -m window --warp south
+shift + alt - y : yabai -m window --warp north
+shift + alt - 0x29 : yabai -m window --warp east
+
+# rotate tree
+alt - r : yabai -m space --rotate 90
+
+# toggle window native fullscreen
+alt - m : yabai -m window --toggle native-fullscreen
+
+# toggle window split type
+alt - t : yabai -m window --toggle split
+
+# toggle whether the window should be tiled
+alt - f : yabai -m window --toggle float ; yabai -m window --grid 6:6:1:1:4:4
+
+# balance out tree of windows (resize to occupy same area)
+alt - 0 : yabai -m space --balance
+
+# move focused window to center
+alt - c: yabai -m window --grid 6:6:1:1:4:4

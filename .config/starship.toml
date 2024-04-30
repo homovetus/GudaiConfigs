@@ -1,0 +1,60 @@
+add_newline = false
+
+format = """
+$username\
+@\
+$hostname\
+[\uE0B0](fg:#79B8FF inverted)\
+$directory\
+[\uE0B0](fg:#79B8FF)\
+[\uE0B0](fg:#95FFA4 inverted)\
+$git_branch\
+$git_status\
+[\uE0B0](fg:#95FFA4)\
+[\uE0B0](fg:#7160E8 inverted)\
+$memory_usage\
+$cmd_duration\
+[\uE0B0](fg:#7160E8)\
+$line_break\
+$character"""
+
+[username]
+format = '  $user'
+show_always = true
+
+[hostname]
+ssh_only = false
+format = '$hostname '
+
+[directory]
+format = "[ $path ]($style)"
+style = "bg:#79B8FF fg:#19191A"
+truncation_length = 3
+truncation_symbol = "../"
+
+[git_branch]
+style = "bg:#95FFA4 fg:#19191A"
+symbol = "\uE0A0"
+format = '[ $symbol $branch ]($style)'
+
+[git_status]
+style = "bg:#95FFA4 fg:#19191A"
+format = '[$all_status$ahead_behind ]($style)'
+
+[memory_usage]
+disabled = false
+format = "[ ${ram} ]($style)"
+style = "bg:#7160E8 fg:#EBEDF2"
+threshold = 50
+
+[cmd_duration]
+format = "[ $duration ]($style)"
+min_time = 16
+style = "bg:#7160E8 fg:#EBEDF2"
+
+[line_break]
+disabled = false
+
+[character]
+success_symbol = "[\u276F](fg:#95FFA4)"
+error_symbol = "[\u276F](fg:#EA4A5A)"

@@ -1,0 +1,23 @@
+" .ideavimrc is a configuration file for IdeaVim plugin. It uses
+"   the same commands as the original .vimrc configuration.
+" You can find a list of commands here: https://jb.gg/h38q75
+" Find more examples here: https://jb.gg/share-ideavimrc
+
+set relativenumber
+
+set hlsearch
+set ignorecase
+set incsearch
+set smartcase
+
+set ideajoin
+
+map <space> <leader>
+
+Plug 'easymotion/vim-easymotion'
+Plug 'machakann/vim-highlightedyank'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+
+" vim-easymotion
+map s <plug>(easymotion-s)

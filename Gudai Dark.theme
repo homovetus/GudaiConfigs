@@ -1,0 +1,76 @@
+; Copyright © Microsoft Corp.
+
+[Theme]
+; Windows - IDS_THEME_DISPLAYNAME_AERO_LIGHT
+DisplayName=Gudai Dark
+ThemeId={1F2145CF-E8AA-4085-B517-99DEB3E8E2E2}
+
+; Computer - SHIDI_SERVER
+[CLSID\{20D04FE0-3AEA-1069-A2D8-08002B30309D}\DefaultIcon]
+DefaultValue=%SystemRoot%\System32\imageres.dll,-109
+
+; UsersFiles - SHIDI_USERFILES
+[CLSID\{59031A47-3F72-44A7-89C5-5595FE6B30EE}\DefaultIcon]
+DefaultValue=%SystemRoot%\System32\imageres.dll,-123
+
+; Network - SHIDI_MYNETWORK
+[CLSID\{F02C1A0D-BE21-4350-88B0-7367FC96EF3C}\DefaultIcon]
+DefaultValue=%SystemRoot%\System32\imageres.dll,-25
+
+; Recycle Bin - SHIDI_RECYCLERFULL SHIDI_RECYCLER
+[CLSID\{645FF040-5081-101B-9F08-00AA002F954E}\DefaultIcon]
+Full=%SystemRoot%\System32\imageres.dll,-54
+Empty=%SystemRoot%\System32\imageres.dll,-55
+
+[Control Panel\Cursors]
+Arrow=%SystemRoot%\cursors\arrow_i.cur
+Help=%SystemRoot%\cursors\help_i.cur
+AppStarting=%SystemRoot%\cursors\wait_i.cur
+Wait=%SystemRoot%\cursors\busy_i.cur
+Crosshair=%SystemRoot%\cursors\cross_i.cur
+IBeam=%SystemRoot%\cursors\beam_i.cur
+NWPen=%SystemRoot%\cursors\pen_i.cur
+No=%SystemRoot%\cursors\no_i.cur
+SizeNS=%SystemRoot%\cursors\size4_i.cur
+SizeWE=%SystemRoot%\cursors\size3_i.cur
+SizeNWSE=%SystemRoot%\cursors\size2_i.cur
+SizeNESW=%SystemRoot%\cursors\size1_i.cur
+SizeAll=%SystemRoot%\cursors\move_i.cur
+UpArrow=%SystemRoot%\cursors\up_i.cur
+Hand=%SystemRoot%\cursors\aero_link_i.cur
+Pin=C:\Windows\cursors\pin_i.cur
+Person=C:\Windows\cursors\person_i.cur
+DefaultValue=Windows Inverted
+
+[Control Panel\Desktop]
+Wallpaper=%USERPROFILE%\Pictures\Saved Pictures\keys-d.jpg
+Pattern=
+MultimonBackgrounds=0
+PicturePosition=4
+Wallpaper1=%USERPROFILE%\Pictures\Saved Pictures\keys-l.jpg
+WallpaperWriteTime=133484264620750405
+WindowsSpotlight=0
+
+[VisualStyles]
+Path=%SystemRoot%\resources\themes\Aero\Aero.msstyles
+ColorStyle=NormalColor
+Size=NormalSize
+AutoColorization=0
+ColorizationColor=0XC46B69D6
+VisualStyleVersion=10
+AppMode=Dark
+SystemMode=Dark
+
+[boot]
+SCRNSAVE.EXE=
+
+[MasterThemeSelector]
+MTSM=RJSPBS
+
+[Sounds]
+; IDS_SCHEME_DEFAULT
+SchemeName=@mmres.dll,-800
+
+[Control Panel\Colors]
+Background=0 0 0
+InfoText=2 0 0
