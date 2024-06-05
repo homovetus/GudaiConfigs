@@ -54,8 +54,9 @@ return {
 		end,
 	},
 	{
-		"echasnovski/mini.comment",
+		"folke/ts-comments.nvim",
 		opts = {},
+		event = "VeryLazy",
 	},
 	{
 		"stevearc/conform.nvim",
@@ -214,7 +215,6 @@ return {
 		"akinsho/toggleterm.nvim",
 		opts = {
 			autochdir = true,
-			shell = "pwsh",
 			direction = "float",
 			float_opts = { border = "curved" },
 			open_mapping = [[<c-\>]],
