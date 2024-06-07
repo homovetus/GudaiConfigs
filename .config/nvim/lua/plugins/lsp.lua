@@ -22,6 +22,91 @@ return {
 			"folke/lazydev.nvim",
 			"williamboman/mason-lspconfig.nvim",
 		},
+		init = function()
+			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+			vim.lsp.handlers["textDocument/signatureHelp"] =
+				vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
+			vim.api.nvim_create_autocmd("LspAttach", {
+				callback = function(args)
+					local client = vim.lsp.get_client_by_id(args.data.client_id)
+					if not client then
+						return
+					end
+					if client.supports_method("textDocument/inlayHint") then
+						print("inlay!")
+						vim.lsp.inlay_hint.enable(true, { bufnr = 0 })
+						print(vim.lsp.inlay_hint.is_enabled({ 0 }))
+					else
+						print("no inlay")
+					end
+					if client.supports_method("textDocument/codeAction") then
+						vim.keymap.set(
+							"n",
+							"ga",
+							[[<cmd>lua vim.lsp.buf.code_action()<cr>]],
+							{ noremap = true, buffer = 0 }
+						)
+					end
+					if client.supports_method("textDocument/definition") then
+						vim.keymap.set(
+							"n",
+							"gd",
+							[[<cmd>lua vim.lsp.buf.definition()<cr>]],
+							{ noremap = true, buffer = 0 }
+						)
+					end
+					if client.supports_method("textDocument/declaration") then
+						vim.keymap.set(
+							"n",
+							"gD",
+							[[<cmd>lua vim.lsp.buf.declaration()<cr>]],
+							{ noremap = true, buffer = 0 }
+						)
+					end
+					if client.supports_method("textDocument/implementation") then
+						vim.keymap.set(
+							"n",
+							"gI",
+							[[<cmd>lua vim.lsp.buf.implementation()<cr>]],
+							{ noremap = true, buffer = 0 }
+						)
+					end
+					if client.supports_method("textDocument/references") then
+						vim.keymap.set(
+							"n",
+							"gr",
+							[[<cmd>lua vim.lsp.buf.references()<cr>]],
+							{ noremap = true, buffer = 0 }
+						)
+					end
+					if client.supports_method("textDocument/rename") then
+						vim.keymap.set("n", "gR", [[<cmd>lua vim.lsp.buf.rename()<cr>]], { noremap = true, buffer = 0 })
+					end
+					if client.supports_method("textDocument/signatureHelp") then
+						vim.keymap.set(
+							"n",
+							"gs",
+							[[<cmd>lua vim.lsp.buf.signature_help()<cr>]],
+							{ noremap = true, buffer = 0 }
+						)
+						vim.keymap.set(
+							"i",
+							"<c-s>",
+							[[<cmd>lua vim.lsp.buf.signature_help()<cr>]],
+							{ noremap = true, buffer = 0 }
+						)
+					end
+					if client.supports_method("textDocument/typeDefinition") then
+						vim.keymap.set(
+							"n",
+							"gt",
+							[[<cmd>lua vim.lsp.buf.type_definition()<cr>]],
+							{ noremap = true, buffer = 0 }
+						)
+					end
+				end,
+			})
+		end,
 		config = function()
 			require("lspconfig.ui.windows").default_options.border = "rounded"
 		end,

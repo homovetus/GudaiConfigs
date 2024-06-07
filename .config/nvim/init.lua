@@ -20,20 +20,10 @@ vim.g.netrw_list_hide = [[^\(ntuser\|NTUSER\)\..*]]
 vim.g.netrw_liststyle = 2
 vim.g.netrw_winsize = -20
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
-
 -- keymaps
-vim.api.nvim_set_keymap("n", "gD", [[<cmd>lua vim.lsp.buf.declaration()<cr>]], { noremap = true })
-vim.api.nvim_set_keymap("n", "gH", [[<cmd>lua vim.lsp.buf.signature_help()<cr>]], { noremap = true })
-vim.api.nvim_set_keymap("n", "gR", [[<cmd>lua vim.lsp.buf.rename()<cr>]], { noremap = true })
-vim.api.nvim_set_keymap("n", "ga", [[<cmd>lua vim.lsp.buf.code_action()<cr>]], { noremap = true })
-vim.api.nvim_set_keymap("n", "gd", [[<cmd>lua vim.lsp.buf.definition()<cr>]], { noremap = true })
-vim.api.nvim_set_keymap("n", "gh", [[<cmd>lua vim.lsp.buf.hover()<cr>]], { noremap = true })
-vim.api.nvim_set_keymap("n", "gi", [[<cmd>lua vim.lsp.buf.implementation()<cr>]], { noremap = true })
-vim.api.nvim_set_keymap("n", "gr", [[<cmd>lua vim.lsp.buf.references()<cr>]], { noremap = true })
-
-vim.api.nvim_set_keymap("t", "<esc><esc>", [[<c-\><c-n>]], { noremap = true })
+vim.keymap.set("n", "<c-t>", [[<cmd>tabnext<cr>]], { noremap = true })
+vim.keymap.set("n", "<c-s-t>", [[<cmd>tabprevious<cr>]], { noremap = true })
+vim.keymap.set("t", "<esc><esc>", [[<c-\><c-n>]], { noremap = true })
 
 -- functions
 TermBoot = function()

@@ -53,7 +53,7 @@ return {
 		end,
 	},
 	{
-		"Exafunction/codeium.vim",
-		event = "BufEnter",
+		"github/copilot.vim",
+		build = ":Copilot auth",
 	},
 }
