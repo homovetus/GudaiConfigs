@@ -5,9 +5,8 @@ return {
 		config = function()
 			local lint = require("lint")
 			lint.linters_by_ft = {
-				-- c = { "clangtidy" },
-				-- cpp = { "clangtidy" },
-				-- lua = { "selene" },
+				c = { "clangtidy" },
+				cpp = { "clangtidy" },
 				python = { "ruff" },
 			}
 			vim.api.nvim_create_autocmd({ "BufWritePost" }, {
@@ -20,7 +19,7 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
-			"folke/neodev.nvim",
+			"folke/lazydev.nvim",
 			"williamboman/mason-lspconfig.nvim",
 		},
 		config = function()
@@ -57,7 +56,8 @@ return {
 		},
 	},
 	{
-		"folke/neodev.nvim",
+		"folke/lazydev.nvim",
+		ft = "lua",
 		opts = {},
 	},
 }
