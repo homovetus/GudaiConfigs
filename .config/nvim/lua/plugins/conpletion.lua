@@ -9,9 +9,9 @@ return {
 			"hrsh7th/cmp-vsnip",
 			"hrsh7th/vim-vsnip",
 		},
-		opts = function()
+		config = function()
 			local cmp = require("cmp")
-			return {
+			cmp.setup({
 				snippet = {
 					expand = function(args)
 						vim.fn["vsnip#anonymous"](args.body)
@@ -32,11 +32,7 @@ return {
 					{ { name = "nvim_lsp" }, { name = "vsnip" } },
 					{ { name = "buffer" }, { name = "path" } }
 				),
-			}
-		end,
-		config = function(_, opts)
-			local cmp = require("cmp")
-			cmp.setup(opts)
+			})
 			cmp.setup.cmdline({ "/", "?" }, {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = {
