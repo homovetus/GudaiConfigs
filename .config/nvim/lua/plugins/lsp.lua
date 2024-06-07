@@ -44,6 +44,7 @@ return {
 				"lua_ls",
 				"powershell_es",
 				"pyright",
+				"rust_analyzer",
 			},
 			handlers = {
 				function(server_name)
