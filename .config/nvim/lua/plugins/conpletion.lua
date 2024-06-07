@@ -9,6 +9,9 @@ return {
 			"hrsh7th/cmp-vsnip",
 			"hrsh7th/vim-vsnip",
 		},
+		init = function()
+			vim.opt.completeopt = { "menu", "menuone", "noselect" }
+		end,
 		config = function()
 			local cmp = require("cmp")
 			cmp.setup({

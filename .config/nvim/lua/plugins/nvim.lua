@@ -89,9 +89,6 @@ return {
 				},
 			},
 		},
-		config = function(_, opts)
-			require("telescope").setup(opts)
-		end,
 	},
 	{
 		"akinsho/toggleterm.nvim",
