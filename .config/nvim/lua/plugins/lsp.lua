@@ -33,11 +33,7 @@ return {
 						return
 					end
 					if client.supports_method("textDocument/inlayHint") then
-						print("inlay!")
-						vim.lsp.inlay_hint.enable(true, { bufnr = 0 })
-						print(vim.lsp.inlay_hint.is_enabled({ 0 }))
-					else
-						print("no inlay")
+						vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
 					end
 					if client.supports_method("textDocument/codeAction") then
 						vim.keymap.set(
