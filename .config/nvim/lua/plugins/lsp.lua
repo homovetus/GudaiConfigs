@@ -95,7 +95,7 @@ return {
 					if client.supports_method("textDocument/typeDefinition") then
 						vim.keymap.set(
 							"n",
-							"gt",
+							"gk",
 							[[<cmd>lua vim.lsp.buf.type_definition()<cr>]],
 							{ noremap = true, buffer = 0 }
 						)
