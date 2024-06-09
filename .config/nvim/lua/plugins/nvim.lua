@@ -65,7 +65,9 @@ return {
 		opts = {},
 	},
 	{
-		"tpope/vim-surround",
+		"kylechui/nvim-surround",
+		event = "VeryLazy",
+		opts = {},
 	},
 	{
 		"nvim-telescope/telescope.nvim",
