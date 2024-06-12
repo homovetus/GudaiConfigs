@@ -1,4 +1,5 @@
 vim.opt.autoread = true
+vim.opt.autoread = true
 vim.opt.clipboard = "unnamedplus"
 vim.opt.relativenumber = true
 vim.opt.wrap = false
@@ -21,8 +22,7 @@ vim.g.netrw_liststyle = 2
 vim.g.netrw_winsize = -20
 
 -- keymaps
-vim.keymap.set("n", "<c-t>", [[<cmd>tabnext<cr>]], { noremap = true })
-vim.keymap.set("n", "<c-s-t>", [[<cmd>tabprevious<cr>]], { noremap = true })
+vim.keymap.set("n", "<esc>", "<cmd>nohlsearch<cr>", { noremap = true })
 vim.keymap.set("t", "<esc><esc>", [[<c-\><c-n>]], { noremap = true })
 
 -- functions
