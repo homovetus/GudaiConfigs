@@ -4,6 +4,32 @@ return {
 		opts = {},
 	},
 	{
+		"nvimdev/dashboard-nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		event = "VimEnter",
+		opts = function()
+			local logo = [[
+            ███████╗██╗   ██╗██████╗ ███████╗██████╗     ███████╗ ██████╗  ██████╗██╗   ██╗███████╗    ██╗
+            ██╔════╝██║   ██║██╔══██╗██╔════╝██╔══██╗    ██╔════╝██╔═══██╗██╔════╝██║   ██║██╔════╝    ██║
+            ███████╗██║   ██║██████╔╝█████╗  ██████╔╝    █████╗  ██║   ██║██║     ██║   ██║███████╗    ██║
+            ╚════██║██║   ██║██╔═══╝ ██╔══╝  ██╔══██╗    ██╔══╝  ██║   ██║██║     ██║   ██║╚════██║    ╚═╝
+            ███████║╚██████╔╝██║     ███████╗██║  ██║    ██║     ╚██████╔╝╚██████╗╚██████╔╝███████║    ██╗
+            ╚══════╝ ╚═════╝ ╚═╝     ╚══════╝╚═╝  ╚═╝    ╚═╝      ╚═════╝  ╚═════╝ ╚═════╝ ╚══════╝    ╚═╝
+            ]]
+			return {
+				config = {
+					header = vim.split(logo, "\n"),
+					packages = { enable = false },
+					shortcut = {
+						{ desc = "󰊳 Sync", group = "@property", action = "Lazy sync", key = "s" },
+						{ desc = " Man", group = "Label", action = "Telescope man_pages", key = "m" },
+					},
+					footer = {},
+				},
+			}
+		end,
+	},
+	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
