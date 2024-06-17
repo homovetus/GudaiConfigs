@@ -1,5 +1,10 @@
 return {
 	{
+		"akinsho/bufferline.nvim",
+		dependencies = "nvim-tree/nvim-web-devicons",
+		opts = {},
+	},
+	{
 		"bkad/CamelCaseMotion",
 		init = function()
 			vim.g.camelcasemotion_key = "<leader>"
@@ -76,11 +81,13 @@ return {
 			"nvim-lua/plenary.nvim",
 		},
 		keys = {
+			{ "<leader>sb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
+			{ "<leader>sc", "<cmd>Telescope commands<cr>", desc = "Commands" },
+			{ "<leader>sd", "<cmd>Telescope diagnostics<cr>", desc = "Diagnostics" },
 			{ "<leader>sf", "<cmd>Telescope find_files<cr>", desc = "Find files" },
 			{ "<leader>sg", "<cmd>Telescope live_grep<cr>", desc = "Grep" },
-			{ "<leader>sb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
 			{ "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help tags" },
-			{ "<leader>sc", "<cmd>Telescope commands<cr>", desc = "Commands" },
+			{ "<leader>sm", "<cmd>Telescope marks<cr>", desc = "Marks" },
 		},
 		opts = {
 			extensions = {
