@@ -35,3 +35,4 @@ bindkey -M vicmd ys add-surround
 bindkey -M visual S add-surround
 
 eval "$(starship init zsh)"
+
