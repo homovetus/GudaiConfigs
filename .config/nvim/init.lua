@@ -6,7 +6,6 @@ vim.opt.wrap = false
 
 vim.opt.expandtab = true
 vim.opt.smartindent = true
-vim.opt.tabstop = 4
 
 -- search
 vim.opt.hlsearch = true
