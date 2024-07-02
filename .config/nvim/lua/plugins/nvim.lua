@@ -2,7 +2,24 @@ return {
 	{
 		"akinsho/bufferline.nvim",
 		dependencies = "nvim-tree/nvim-web-devicons",
-		opts = {},
+		event = "BufWinEnter",
+		keys = {
+			{ "gb", "<cmd>BufferLinePick<cr>", desc = "Buffer Pick" },
+		},
+		opts = {
+			options = {
+				diagnostics = "nvim_lsp",
+				offsets = {
+					{
+						filetype = "NvimTree",
+						separator = "█",
+						text = "File Explorer",
+						text_align = "center",
+					},
+				},
+				separator_style = "slant",
+			},
+		},
 	},
 	{
 		"bkad/CamelCaseMotion",
