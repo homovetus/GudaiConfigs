@@ -52,10 +52,9 @@ return {
 		priority = 1000,
 		init = function()
 			vim.opt.termguicolors = true
-			vim.cmd([[colorscheme tokyonight]])
+			vim.cmd("colorscheme tokyonight")
 		end,
 		opts = {
-			transparent = true,
 			terminal_colors = false,
 		},
 	},
