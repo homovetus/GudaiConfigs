@@ -12,12 +12,11 @@ return {
 				offsets = {
 					{
 						filetype = "NvimTree",
-						separator = "█",
+						separator = " ",
 						text = "File Explorer",
 						text_align = "center",
 					},
 				},
-				separator_style = "slant",
 			},
 		},
 	},
@@ -105,6 +104,7 @@ return {
 			{ "<leader>sg", "<cmd>Telescope live_grep<cr>", desc = "Grep" },
 			{ "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help tags" },
 			{ "<leader>sm", "<cmd>Telescope marks<cr>", desc = "Marks" },
+                        { "<leader>so", "<cmd>Telescope oldfiles<cr>", desc = "Old files" },
 		},
 		opts = {
 			extensions = {
