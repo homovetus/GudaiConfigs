@@ -62,7 +62,9 @@ return {
 			vim.opt.termguicolors = true
 		end,
 		opts = {
-			-- terminal_colors = false,
+			options = {
+				terminal_colors = false,
+			},
 		},
 	},
 	{
