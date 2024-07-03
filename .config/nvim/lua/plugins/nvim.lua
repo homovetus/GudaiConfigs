@@ -81,6 +81,10 @@ return {
 			label = { uppercase = false },
 		},
 	},
+        {
+                "lewis6991/gitsigns.nvim",
+                opts = {},
+        },
 	{
 		"echasnovski/mini.pairs",
 		opts = {},
