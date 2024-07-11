@@ -21,12 +21,6 @@ return {
 		},
 	},
 	{
-		"bkad/CamelCaseMotion",
-		init = function()
-			vim.g.camelcasemotion_key = "<leader>"
-		end,
-	},
-	{
 		"folke/ts-comments.nvim",
 		opts = {},
 		event = "VeryLazy",
@@ -81,10 +75,10 @@ return {
 			label = { uppercase = false },
 		},
 	},
-        {
-                "lewis6991/gitsigns.nvim",
-                opts = {},
-        },
+	{
+		"lewis6991/gitsigns.nvim",
+		opts = {},
+	},
 	{
 		"echasnovski/mini.pairs",
 		opts = {},
@@ -108,7 +102,7 @@ return {
 			{ "<leader>sg", "<cmd>Telescope live_grep<cr>", desc = "Grep" },
 			{ "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help tags" },
 			{ "<leader>sm", "<cmd>Telescope marks<cr>", desc = "Marks" },
-                        { "<leader>so", "<cmd>Telescope oldfiles<cr>", desc = "Old files" },
+			{ "<leader>so", "<cmd>Telescope oldfiles<cr>", desc = "Old files" },
 		},
 		opts = {
 			extensions = {

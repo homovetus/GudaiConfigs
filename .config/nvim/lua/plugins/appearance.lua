@@ -11,6 +11,9 @@ return {
 		"nvimdev/dashboard-nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		event = "VimEnter",
+		keys = {
+			{ "<leader>d", "<cmd>Dashboard<cr>", desc = "Dashboard" },
+		},
 		opts = function()
 			local logo = [[
 ███████╗██╗   ██╗██████╗ ███████╗██████╗    ███████╗ ██████╗  ██████╗██╗   ██╗███████╗   ██╗
@@ -44,7 +47,17 @@ return {
 			vim.opt.showmode = false
 		end,
 		opts = {
-			options = { icons_enabled = false },
+			options = {
+				component_separators = { left = "|", right = "|" },
+				section_separators = "",
+			},
+			sections = {
+				lualine_x = {
+					"encoding",
+					{ "fileformat", symbols = { unix = [[LF]], dos = [[CRLF]], mac = [[CR]] } },
+					"filetype",
+				},
+			},
 		},
 	},
 	{
