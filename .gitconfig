@@ -1,5 +1,7 @@
+[core]
+	autocrlf = false
 [diff]
-    external = difft
+	external = difft
 [user]
 	name = Shi Rao
 	email = github@homovetus.com
