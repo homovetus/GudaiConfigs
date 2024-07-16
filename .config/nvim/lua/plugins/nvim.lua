@@ -116,12 +116,18 @@ return {
 	},
 	{
 		"akinsho/toggleterm.nvim",
-		opts = {
-			autochdir = true,
-			direction = "float",
-			float_opts = { border = "curved" },
-			open_mapping = [[<c-\>]],
-		},
+		opts = function()
+			local opts = {
+				autochdir = true,
+				direction = "float",
+				float_opts = { border = "curved" },
+				open_mapping = [[<c-\>]],
+			}
+			if vim.fn.has("win32") == 1 then
+				opts.shell = "pwsh"
+			end
+			return opts
+		end,
 	},
 	{
 		"nvim-tree/nvim-tree.lua",
