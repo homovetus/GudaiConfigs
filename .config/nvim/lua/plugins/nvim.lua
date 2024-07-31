@@ -43,7 +43,9 @@ return {
 			formatters_by_ft = {
 				c = { "clang_format" },
 				cpp = { "clang_format" },
+				html = { "prettier" },
 				json = { "prettier" },
+				javascript = { "prettier" },
 				lua = { "stylua" },
 				python = { "ruff_format" },
 				["*"] = { "trim_whitespace" },
@@ -149,6 +151,14 @@ return {
 			sync_root_with_cwd = true,
 			view = { relativenumber = true },
 		},
+	},
+	{
+		"hedyhli/outline.nvim",
+		cmd = "Outline",
+		keys = {
+			{ "<leader>o", "<cmd>Outline<cr>", desc = "Toggle Outline" },
+		},
+		opts = {},
 	},
 	{
 		"folke/which-key.nvim",

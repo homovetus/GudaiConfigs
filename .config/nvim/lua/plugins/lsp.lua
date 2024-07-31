@@ -7,6 +7,7 @@ return {
 			lint.linters_by_ft = {
 				c = { "clangtidy" },
 				cpp = { "clangtidy" },
+				html = { "htmlhint" },
 				python = { "ruff" },
 			}
 			vim.api.nvim_create_autocmd({ "BufWritePost" }, {
