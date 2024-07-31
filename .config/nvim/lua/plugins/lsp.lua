@@ -127,8 +127,8 @@ return {
 				"powershell_es",
 				"pyright",
 				"rust_analyzer",
-				"html-lsp",
-				"json-lsp",
+				"html",
+				"jsonls",
 				"tsserver",
 			},
 			handlers = {
