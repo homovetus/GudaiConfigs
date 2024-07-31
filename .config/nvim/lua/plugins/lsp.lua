@@ -127,6 +127,9 @@ return {
 				"powershell_es",
 				"pyright",
 				"rust_analyzer",
+				"html-lsp",
+				"json-lsp",
+				"tsserver",
 			},
 			handlers = {
 				function(server_name)
