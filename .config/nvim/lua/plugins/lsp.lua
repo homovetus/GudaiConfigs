@@ -8,7 +8,9 @@ return {
 				c = { "clangtidy" },
 				cpp = { "clangtidy" },
 				html = { "htmlhint" },
+				javascript = { "oxlint" },
 				python = { "ruff" },
+				typescript = { "oxlint" },
 			}
 			vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 				callback = function()
@@ -16,6 +18,7 @@ return {
 				end,
 			})
 		end,
+		build = ":MasonInstall clangtidy htmlhint oxlint ruff",
 	},
 	{
 		"neovim/nvim-lspconfig",
@@ -33,6 +36,20 @@ return {
 					if not client then
 						return
 					end
+					local bufnr = args.buf
+					vim.api.nvim_create_autocmd("CursorHold", {
+						buffer = bufnr,
+						callback = function()
+							vim.diagnostic.open_float(nil, {
+								focusable = false,
+								close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+								border = "rounded",
+								source = "always",
+								prefix = " ",
+								scope = "cursor",
+							})
+						end,
+					})
 					if client.supports_method("textDocument/inlayHint") then
 						vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
 					end
@@ -41,7 +58,7 @@ return {
 							"n",
 							"ga",
 							[[<cmd>lua vim.lsp.buf.code_action()<cr>]],
-							{ noremap = true, buffer = 0 }
+							{ noremap = true, buffer = bufnr }
 						)
 					end
 					if client.supports_method("textDocument/definition") then
@@ -49,7 +66,7 @@ return {
 							"n",
 							"gd",
 							[[<cmd>lua vim.lsp.buf.definition()<cr>]],
-							{ noremap = true, buffer = 0 }
+							{ noremap = true, buffer = bufnr }
 						)
 					end
 					if client.supports_method("textDocument/declaration") then
@@ -57,7 +74,7 @@ return {
 							"n",
 							"gD",
 							[[<cmd>lua vim.lsp.buf.declaration()<cr>]],
-							{ noremap = true, buffer = 0 }
+							{ noremap = true, buffer = bufnr }
 						)
 					end
 					if client.supports_method("textDocument/implementation") then
@@ -65,7 +82,7 @@ return {
 							"n",
 							"gI",
 							[[<cmd>lua vim.lsp.buf.implementation()<cr>]],
-							{ noremap = true, buffer = 0 }
+							{ noremap = true, buffer = bufnr }
 						)
 					end
 					if client.supports_method("textDocument/references") then
@@ -73,24 +90,29 @@ return {
 							"n",
 							"gr",
 							[[<cmd>lua vim.lsp.buf.references()<cr>]],
-							{ noremap = true, buffer = 0 }
+							{ noremap = true, buffer = bufnr }
 						)
 					end
 					if client.supports_method("textDocument/rename") then
-						vim.keymap.set("n", "gR", [[<cmd>lua vim.lsp.buf.rename()<cr>]], { noremap = true, buffer = 0 })
+						vim.keymap.set(
+							"n",
+							"gR",
+							[[<cmd>lua vim.lsp.buf.rename()<cr>]],
+							{ noremap = true, buffer = bufnr }
+						)
 					end
 					if client.supports_method("textDocument/signatureHelp") then
 						vim.keymap.set(
 							"n",
 							"gs",
 							[[<cmd>lua vim.lsp.buf.signature_help()<cr>]],
-							{ noremap = true, buffer = 0 }
+							{ noremap = true, buffer = bufnr }
 						)
 						vim.keymap.set(
 							"i",
 							"<c-s>",
 							[[<cmd>lua vim.lsp.buf.signature_help()<cr>]],
-							{ noremap = true, buffer = 0 }
+							{ noremap = true, buffer = bufnr }
 						)
 					end
 					if client.supports_method("textDocument/typeDefinition") then
@@ -98,7 +120,7 @@ return {
 							"n",
 							"gk",
 							[[<cmd>lua vim.lsp.buf.type_definition()<cr>]],
-							{ noremap = true, buffer = 0 }
+							{ noremap = true, buffer = bufnr }
 						)
 					end
 				end,
@@ -122,6 +144,7 @@ return {
 		},
 		opts = {
 			ensure_installed = {
+                                "bashls",
 				"clangd",
 				"lua_ls",
 				"powershell_es",
