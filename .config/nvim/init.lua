@@ -24,8 +24,9 @@ vim.g.netrw_winsize = -20
 -- keymaps
 vim.keymap.set("n", "<esc>", "<cmd>nohlsearch<cr>", { noremap = true })
 vim.keymap.set("t", "<esc><esc>", [[<c-\><c-n>]], { noremap = true })
-vim.keymap.set("n", "<tab>", "<cmd>BufferLineCycleNext<cr>", { noremap = true })
-vim.keymap.set("n", "<s-tab>", "<cmd>BufferLineCyclePrev<cr>", { noremap = true })
+vim.keymap.set("n", "<tab>", "<cmd>bnext<cr>", { noremap = true })
+vim.keymap.set("n", "<s-tab>", "<cmd>bprevious<cr>", { noremap = true })
+vim.keymap.set("n", "<leader>bd", "<cmd>bn|bd#<cr>", { noremap = true })
 
 -- functions
 TermBoot = function()
@@ -59,7 +60,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins", {
-	checker = { enabled = true },
 	dev = { path = "~/Sources" },
 	ui = { border = "rounded" },
 })

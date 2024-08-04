@@ -4,10 +4,12 @@ return {
 		dependencies = "nvim-tree/nvim-web-devicons",
 		event = "BufWinEnter",
 		keys = {
-			{ "gb", "<cmd>BufferLinePick<cr>", desc = "Buffer Pick" },
+			{ "<leader>bp", "<cmd>BufferLinePick<cr>", desc = "Buffer Pick" },
+			{ "<leader>bc", "<cmd>BufferLinePickClose<cr>", desc = "Buffer Pick Close" },
 		},
 		opts = {
 			options = {
+				close_command = ":bn|bd#",
 				diagnostics = "nvim_lsp",
 				offsets = {
 					{
