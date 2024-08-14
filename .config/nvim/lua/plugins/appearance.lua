@@ -63,8 +63,8 @@ return {
 	{
 		"vimpostor/vim-lumen",
 		init = function()
-			vim.g.lumen_light_colorscheme = "dayfox"
-			vim.g.lumen_dark_colorscheme = "duskfox"
+			vim.g.lumen_light_colorscheme = "tokyonight-day"
+			vim.g.lumen_dark_colorscheme = "tokyonight-night"
 		end,
 	},
 	{
@@ -79,6 +79,7 @@ return {
 				terminal_colors = false,
 			},
 		},
+		enabled = false,
 	},
 	{
 		"folke/tokyonight.nvim",
@@ -91,6 +92,6 @@ return {
 		opts = {
 			terminal_colors = false,
 		},
-		enabled = false,
+		-- enabled = false,
 	},
 }
