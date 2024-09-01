@@ -18,7 +18,7 @@ return {
 				end,
 			})
 		end,
-		build = ":MasonInstall clangtidy htmlhint oxlint ruff",
+		build = ":MasonInstall htmlhint oxlint ruff",
 	},
 	{
 		"neovim/nvim-lspconfig",
@@ -144,8 +144,9 @@ return {
 		},
 		opts = {
 			ensure_installed = {
-                                "bashls",
+				"bashls",
 				"clangd",
+				"cssls",
 				"lua_ls",
 				"powershell_es",
 				"pyright",
