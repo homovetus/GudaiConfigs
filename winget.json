@@ -68,6 +68,9 @@
           "PackageIdentifier": "Python.Python.3.12"
         },
         {
+          "PackageIdentifier": "Armin2208.WindowsAutoNightMode"
+        },
+        {
           "PackageIdentifier": "Telegram.TelegramDesktop"
         },
         {
@@ -82,19 +85,6 @@
         "Identifier": "Microsoft.Winget.Source_8wekyb3d8bbwe",
         "Name": "winget",
         "Type": "Microsoft.PreIndexed.Package"
-      }
-    },
-    {
-      "Packages": [
-        {
-          "PackageIdentifier": "XP8JK4HZBVF435"
-        }
-      ],
-      "SourceDetails": {
-        "Argument": "https://storeedgefd.dsx.mp.microsoft.com/v9.0",
-        "Identifier": "StoreEdgeFD",
-        "Name": "msstore",
-        "Type": "Microsoft.Rest"
       }
     }
   ],
