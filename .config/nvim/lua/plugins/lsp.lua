@@ -153,7 +153,7 @@ return {
 				"rust_analyzer",
 				"html",
 				"jsonls",
-				"tsserver",
+				"ts_ls",
 			},
 			handlers = {
 				function(server_name)
