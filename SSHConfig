@@ -1,8 +1,12 @@
-Host pc.homoantiquum.com
-  ProxyCommand cloudflared access ssh --hostname %h
+# Added by OrbStack: 'orb' SSH host for Linux machines
+# This only works if it's at the top of ssh_config (before any Host blocks).
+# Comment this line if you don't want it to be added again.
+Include ~/.orbstack/ssh/config
 
-Host deck.homoantiquum.com
-  ProxyCommand cloudflared access ssh --hostname %h
+Host deck
+  HostName 10.110.148.4
+  Port 1140
+  User deck
 
 Host github.com
   AddKeysToAgent yes
