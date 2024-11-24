@@ -8,19 +8,27 @@ $UserDir = if ($IsMacOS) { "$env:HOME" } else { "$env:USERPROFILE" }
 function CreateSymbolicLink {
     param (
         [Parameter(Mandatory = $true)][string]$Path,
-        [Parameter(Mandatory = $true)][string]$Target,
+        [Parameter(Mandatory = $true)][string]$TargetName,
         [Parameter(Mandatory = $false)][string]$ConfigDir = (Get-Location).Path
     )
 
     $Path = [IO.Path]::GetFullPath($Path)
-    $Target = [IO.Path]::GetFullPath((Join-Path $ConfigDir $Target))
+    $Target = [IO.Path]::GetFullPath((Join-Path $ConfigDir $TargetName))
 
-    if ($Debug) {
-        Write-Host "Will be linking: $Path -> $Target" -ForegroundColor Green
+    if (Test-Path $Target -PathType Container) {
+        if (-not (Test-Path $Path)) {
+            New-Item -ItemType Directory -Path $Path | Out-Null
+        }
+        Get-ChildItem -Path $Target | ForEach-Object {
+            $ChildTarget = $_.FullName
+            $ChildPath = Join-Path -Path $Path -ChildPath $_.Name
+            New-Item -ItemType SymbolicLink -Path $ChildPath -Target $ChildTarget -Force | Out-Null
+            Write-Host "Pointing $ChildPath -> $ChildTarget" -ForegroundColor Green
+        }
     }
     else {
         New-Item -ItemType SymbolicLink -Path $Path -Target $Target -Force | Out-Null
-        Write-Host "Linked $Path -> $Target" -ForegroundColor Green
+        Write-Host "Pointing $Path -> $Target" -ForegroundColor Green
     }
 }
 
@@ -35,11 +43,11 @@ function CopySSHKeys {
     $Target = [IO.Path]::GetFullPath($Target)
 
     if ($Debug) {
-        Write-Host "Will be copying: $Target -> $Path" -ForegroundColor Yellow
+        Write-Host "Copying to $Path From $Target" -ForegroundColor Yellow
     }
     else {
         Copy-Item $Target $Path -Force
-        Write-Host "Copied $Target -> $Path" -ForegroundColor Yellow
+        Write-Host "Copying to $Path From $Target" -ForegroundColor Yellow
     }
 }
 
