@@ -76,7 +76,7 @@ else {
     CreateSymbolicLink "$UserDir/Documents/PowerShell" ".config/powershell"
     CreateSymbolicLink "$UserDir/Documents/PowerToys" "PowerToys"
     CreateSymbolicLink "$env:LOCALAPPDATA/nvim" ".config/nvim"
-    CreateSymbolicLink "$env:LOCALAPPDATA/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json" "WindowsTerminal.json"
+    CreateSymbolicLink "$env:LOCALAPPDATA/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json" "wt.json"
     CreateSymbolicLink "$env:LOCALAPPDATA/Microsoft/Windows/Themes/Gudai Dark.theme" "Gudai Dark.theme"
     CreateSymbolicLink "$env:LOCALAPPDATA/Microsoft/Windows/Themes/Gudai Light.theme" "Gudai Light.theme"
 
