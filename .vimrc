@@ -132,10 +132,10 @@ xnoremap <silent><nowait>gc  :call <sid>VisualComment()<cr>
 let s:easymotion_key=['n','i','e','h','a','r','s','t','d','q','w','f','p','l','u','y',';','c','v','b','k','m','g','j','z','x']
 let s:easymotion_leader=[';',',',' ',"'",'.','/','[','\',']']|let s:easymotion_leader_dict={';':0,',':0,'.':0,"'":0,' ':0,'/':0,'[':0,'\':0,']':0}
 func! s:EasyMotion()abort
-        echo "input key:"|let ch=nr2char(getchar())|let s:easymotion={}|let llen=len(s:easymotion_leader)+1
+	echo "input key:"|let ch=nr2char(getchar())|let s:easymotion={}|let llen=len(s:easymotion_leader)+1
 	let ch=tolower(ch)|if ch>='a'&&ch<='z'|let up=toupper(ch)|else|let up=""|endif
 	let info=winsaveview()|let info["endline"]=winheight(0)+info["topline"]|let width=winwidth(0)|let num=0|let old=ch|let pos=0|let klen=len(s:easymotion_key)
-	if ch=="\<c-[>"|return|endif
+	if ch=="\<c-[>"|return|endif|if &fen|setlocal nofen|endif
 	let lines=getbufline("%",info["topline"],info["endline"])|let bak=copy(lines)|set nohlsearch
 	let hlcomment=[]|let begin=info["topline"]|let end=info["endline"]
 	while end-begin>=8|call add(hlcomment,matchaddpos("comment",range(begin,end)))|let begin+=8|endwhile
