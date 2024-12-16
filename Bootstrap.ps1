@@ -84,5 +84,6 @@ else {
     CopySSHKeys "$OneDrive/SSHKeys/homovetus.pub"
 
     CreateSymbolicLink "$UserDir/Documents/美少女万華鏡３" "美少女万華鏡３" $OneDrive
+    CreateSymbolicLink "$UserDir/Documents/PCSX2" "PCSX2" $OneDrive
     CreateSymbolicLink "$env:APPDATA/Nitroplus" "Nitroplus" $OneDrive
 }
