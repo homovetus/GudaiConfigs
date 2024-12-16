@@ -67,7 +67,7 @@ return {
 		event = "VeryLazy",
 		keys = {
 			{
-				"<leader><bs>",
+				"s",
 				function()
 					require("flash").jump()
 				end,

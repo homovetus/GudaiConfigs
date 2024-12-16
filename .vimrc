@@ -168,7 +168,7 @@ func! s:EasyMotion()abort
 	for hlnow in hlcomment|call matchdelete(hlnow)|endfor
 	silent! undojoin|call setline(info["topline"],bak)|setlocal nomodified
 endfunc
-nnoremap <silent><leader><BS> :call <sid>EasyMotion()<cr>
+nnoremap <silent><s> :call <sid>EasyMotion()<cr>
 inoremap <silent><c-s> <c-o>:call <sid>EasyMotion()<cr>
 " }}}
 
