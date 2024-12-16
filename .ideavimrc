@@ -3,21 +3,25 @@
 " You can find a list of commands here: https://jb.gg/h38q75
 " Find more examples here: https://jb.gg/share-ideavimrc
 
+set clipboard=ideaput
 set relativenumber
+set selectmode+=ideaselection
 
 set hlsearch
 set ignorecase
 set incsearch
 set smartcase
 
+set ideacopypreprocess
 set ideajoin
 
-map <space> <leader>
+let mapleader=" "
 
 Plug 'easymotion/vim-easymotion'
 Plug 'machakann/vim-highlightedyank'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
+Plug 'preservim/nerdtree'
 
 " vim-easymotion
-map s <plug>(easymotion-s)
+map <leader><BS> <plug>(easymotion-s)
