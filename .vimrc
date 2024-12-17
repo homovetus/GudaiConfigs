@@ -1,3 +1,5 @@
+language en
+
 set autoread
 set clipboard=unnamed
 set confirm
@@ -34,6 +36,8 @@ let g:netrw_winsize=25  " 25 %
 nnoremap <silent> <S-Tab> :bprevious<CR>
 nnoremap <silent> <Tab> :bnext<CR>
 nnoremap <silent> <leader>t :Lexplore<CR>
+
+colorscheme wildcharm
 
 " autopair {{{
 let g:pair_map={'(':')','[':']','{':'}','"':'"',"'":"'",'<':'>','`':'`',}
@@ -168,7 +172,7 @@ func! s:EasyMotion()abort
 	for hlnow in hlcomment|call matchdelete(hlnow)|endfor
 	silent! undojoin|call setline(info["topline"],bak)|setlocal nomodified
 endfunc
-nnoremap <silent><s> :call <sid>EasyMotion()<cr>
+nnoremap <silent>s :call <sid>EasyMotion()<cr>
 inoremap <silent><c-s> <c-o>:call <sid>EasyMotion()<cr>
 " }}}
 
