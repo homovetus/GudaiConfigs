@@ -1,4 +1,4 @@
-language en
+language en_US
 
 set autoread
 set clipboard=unnamed

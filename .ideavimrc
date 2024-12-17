@@ -24,4 +24,4 @@ Plug 'tpope/vim-surround'
 Plug 'preservim/nerdtree'
 
 " vim-easymotion
-map <leader><BS> <plug>(easymotion-s)
+map s <plug>(easymotion-s)
