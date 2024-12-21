@@ -61,5 +61,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins", {
 	dev = { path = "~/Sources" },
+	rocks = { enabled = false },
 	ui = { border = "rounded" },
 })
