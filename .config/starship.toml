@@ -19,12 +19,14 @@ $line_break\
 $character"""
 
 [username]
-format = '  $user'
+format = '[  $user]($style)'
 show_always = true
+style_user = "white"
 
 [hostname]
 ssh_only = false
-format = '$hostname '
+format = '[$hostname ]($style)'
+style = "white"
 
 [directory]
 format = "[ $path ]($style)"
