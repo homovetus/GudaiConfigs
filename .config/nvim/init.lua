@@ -1,7 +1,6 @@
 vim.o.autoread = true
 vim.o.clipboard = "unnamedplus"
 vim.o.relativenumber = true
-vim.o.relativenumber = true
 vim.o.updatetime = 500
 vim.o.wrap = false
 
@@ -27,14 +26,6 @@ vim.keymap.set("t", "<esc><esc>", [[<c-\><c-n>]], { noremap = true })
 vim.keymap.set("n", "<tab>", "<cmd>bnext<cr>", { noremap = true })
 vim.keymap.set("n", "<s-tab>", "<cmd>bprevious<cr>", { noremap = true })
 vim.keymap.set("n", "<leader>bd", "<cmd>bn|bd#<cr>", { noremap = true })
-
--- functions
-TermBoot = function()
-	vim.cmd([[ToggleTerm]])
-end
-
--- define vim command
-vim.cmd([[command! TermBoot lua TermBoot()]])
 
 -- lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
