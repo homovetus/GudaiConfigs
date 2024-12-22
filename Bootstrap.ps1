@@ -58,7 +58,7 @@ CreateSymbolicLink "$UserDir/.vimrc" ".vimrc"
 CreateSymbolicLink "$UserDir/.ideavimrc" ".ideavimrc"
 CreateSymbolicLink "$UserDir/.config" ".config"
 CreateSymbolicLink "$UserDir/.gitconfig" ".gitconfig"
-CreateSymbolicLink "$UserDir/.ssh/config" "SSHConfig"
+CreateSymbolicLink "$UserDir/.ssh/config" "ssh_config"
 Write-Host ""
 
 # Mac Files
