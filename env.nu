@@ -1,31 +1,43 @@
 use std
 
+let vetus = {
+    black: '#19191A',
+    white: '#EBEDF2',
+    blue: '#79B8FF',
+    green: '#95FFA4',
+    yellow: '#FFC073',
+    red: '#F97583',
+    purple: '#7160E8'
+}
+
+def to_ansi [style] {
+    $'($style)($in)(ansi reset)'
+}
+
 def to_right_powerline_style [main_color, font_color] {
-    let start = $'(ansi --escape {fg: $main_color attr: r})(ansi reset)'
-    let end = $'(ansi --escape {fg: $main_color})(ansi reset)'
+    let start = "" | to_ansi (ansi --escape {fg: $main_color attr: r})
+    let end = "" | to_ansi (ansi --escape {fg: $main_color})
     if $in == '' {
         return ($start + $end)
     }
-    let body = $'(ansi --escape {fg: $font_color, bg: $main_color}) ($in) (ansi reset)'
-
+    let body = $" ($in) " | to_ansi (ansi --escape {fg: $font_color, bg: $main_color})
     $start + $body + $end
 }
 
 def to_left_powerline_style [main_color, font_color] {
-    let start = $'(ansi --escape {fg: $main_color})(ansi reset)'
-    let end = $'(ansi --escape {fg: $main_color attr: r})(ansi reset)'
+    let start = "" | to_ansi (ansi --escape {fg: $main_color})
+    let end = "" | to_ansi (ansi --escape {fg: $main_color attr: r})
     if $in == '' {
         return ($start + $end)
     }
-    let body = $'(ansi --escape {fg: $font_color, bg: $main_color}) ($in) (ansi reset)'
-
+    let body = $" ($in) " | to_ansi (ansi --escape {fg: $font_color, bg: $main_color})
     $start + $body + $end
 }
 
 def create_user_prompt [] {
     let user = whoami
     let host = hostname
-    $'(ansi white)($user)@($host)(ansi reset)'
+    $'($user)@($host)' | to_ansi (ansi white)
 }
 
 def create_dir_prompt [] {
@@ -34,15 +46,14 @@ def create_dir_prompt [] {
         '' => '~'
         $relative_pwd => ([~ $relative_pwd] | path join)
     }
-    $dir | to_right_powerline_style '#79B8FF' '#19191A'
+    $dir | to_right_powerline_style $vetus.blue $vetus.black
 }
 
 def create_git_prompt [] {
-    let git_dir = $env.PWD | path join '.git'
-    let branch = if ($git_dir | path exists) {
-        git branch --show-current | $' ' + $in
+    let branch = git branch --show-current err> (std null-device) | if $env.LAST_EXIT_CODE == 0 {
+        $in
     } else ''
-    $branch | to_right_powerline_style '#95FFA4' '#19191A'
+    $branch | to_right_powerline_style $vetus.green $vetus.black
 }
 
 def create_mem_prompt [] {
@@ -51,7 +62,7 @@ def create_mem_prompt [] {
     let mem = if $used_mem / $total_mem > 0.5 {
         $used_mem | into string
     } else ''
-    $mem | to_right_powerline_style '#FFC073' '#19191A'
+    $mem | to_right_powerline_style $vetus.purple $vetus.white
 }
 
 def create_time_prompt [] {
@@ -60,14 +71,14 @@ def create_time_prompt [] {
     let duration = if $duration_ms < 1000 {
         $'($duration_ms)ms'
     } else $'($duration_ms / 1000)s'
-    $time + ' ' + $duration | to_left_powerline_style '#7160E8' '#EBEDF2'
+    $time + ' ' + $duration | to_left_powerline_style $vetus.yellow $vetus.black
 }
 
 def create_exit_code_prompt [] {
     let last_exit_code = $env.LAST_EXIT_CODE
     if $last_exit_code != 0 {
-        $'(ansi --escape { fg : "#F97583" })($last_exit_code)(ansi reset)'
-    } else null
+        $last_exit_code | to_ansi (ansi --escape { fg : $vetus.red })
+    } else ''
 }
 
 def create_left_prompt [] {
@@ -81,55 +92,32 @@ def create_left_prompt [] {
 def create_right_prompt [] {
     let exit_code = create_exit_code_prompt
     let time = create_time_prompt
-    [$time, $exit_code] | str join ' '
+    if $exit_code != '' {
+        $time + ' ' + $exit_code
+    } else $time
 }
 
 $env.PROMPT_COMMAND = {|| create_left_prompt }
 $env.PROMPT_COMMAND_RIGHT = {|| create_right_prompt }
-$env.PROMPT_INDICATOR = {|| "❯ " }
-$env.PROMPT_INDICATOR_VI_INSERT = {|| ": " }
-$env.PROMPT_INDICATOR_VI_NORMAL = {|| "❯ " }
-$env.PROMPT_MULTILINE_INDICATOR = {|| "::: " }
-
-# If you want previously entered commands to have a different prompt from the usual one,
-# you can uncomment one or more of the following lines.
-# This can be useful if you have a 2-line prompt and it's taking up a lot of space
-# because every command entered takes up 2 lines instead of 1. You can then uncomment
-# the line below so that previously entered commands show with a single `🚀`.
-# $env.TRANSIENT_PROMPT_COMMAND = {|| "🚀 " }
-# $env.TRANSIENT_PROMPT_INDICATOR = {|| "" }
-# $env.TRANSIENT_PROMPT_INDICATOR_VI_INSERT = {|| "" }
-# $env.TRANSIENT_PROMPT_INDICATOR_VI_NORMAL = {|| "" }
-# $env.TRANSIENT_PROMPT_MULTILINE_INDICATOR = {|| "" }
-# $env.TRANSIENT_PROMPT_COMMAND_RIGHT = {|| "" }
+$env.PROMPT_INDICATOR = {|| '❯ ' }
+$env.PROMPT_INDICATOR_VI_INSERT = {|| ': ' }
+$env.PROMPT_INDICATOR_VI_NORMAL = {|| '❯ ' }
+$env.PROMPT_MULTILINE_INDICATOR = {|| '::: ' }
 
 # Specifies how environment variables are:
 # - converted from a string to a value on Nushell startup (from_string)
 # - converted from a value back to a string when running external commands (to_string)
 # Note: The conversions happen *after* config.nu is loaded
-$env.ENV_CONVERSIONS = {
-    "PATH": {
-        from_string: { |s| $s | split row (char esep) | path expand --no-symlink }
-        to_string: { |v| $v | path expand --no-symlink | str join (char esep) }
-    }
-    "Path": {
-        from_string: { |s| $s | split row (char esep) | path expand --no-symlink }
-        to_string: { |v| $v | path expand --no-symlink | str join (char esep) }
-    }
-}
-
-# Directories to search for scripts when calling source or use
-# The default for this is $nu.default-config-dir/scripts
-$env.NU_LIB_DIRS = [
-    ($nu.default-config-dir | path join 'scripts') # add <nushell-config-dir>/scripts
-    ($nu.data-dir | path join 'completions') # default home for nushell completions
-]
-
-# Directories to search for plugin binaries when calling register
-# The default for this is $nu.default-config-dir/plugins
-$env.NU_PLUGIN_DIRS = [
-    ($nu.default-config-dir | path join 'plugins') # add <nushell-config-dir>/plugins
-]
+# $env.ENV_CONVERSIONS = {
+#     "PATH": {
+#         from_string: { |s| $s | split row (char esep) | path expand --no-symlink }
+#         to_string: { |v| $v | path expand --no-symlink | str join (char esep) }
+#     }
+#     "Path": {
+#         from_string: { |s| $s | split row (char esep) | path expand --no-symlink }
+#         to_string: { |v| $v | path expand --no-symlink | str join (char esep) }
+#     }
+# }
 
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
 # $env.PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
