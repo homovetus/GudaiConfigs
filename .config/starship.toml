@@ -38,12 +38,12 @@ vt_yellow = "#FFC073"
 [username]
 format = '[  $user]($style)'
 show_always = true
-style_user = "white"
+style_user = "fg:none"
 
 [hostname]
 format = '[$hostname ]($style)'
 ssh_only = false
-style = "white"
+style = "fg:none"
 
 [directory]
 format = "[ $path ]($style)"
