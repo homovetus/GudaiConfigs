@@ -1,104 +1,107 @@
 use std
 
-let vetus = {
-    black: '#19191A',
-    white: '#EBEDF2',
-    blue: '#79B8FF',
-    green: '#95FFA4',
-    yellow: '#FFC073',
-    red: '#F97583',
-    purple: '#7160E8'
-}
-
-def to_ansi [style] {
-    $'($style)($in)(ansi reset)'
-}
-
-def to_right_powerline_style [main_color, font_color] {
-    let start = "" | to_ansi (ansi --escape {fg: $main_color attr: r})
-    let end = "" | to_ansi (ansi --escape {fg: $main_color})
-    if $in == '' {
-        return ($start + $end)
+module prompt {
+    const vetus = {
+        black: '#19191A',
+        white: '#EBEDF2',
+        blue: '#79B8FF',
+        green: '#95FFA4',
+        yellow: '#FFC073',
+        red: '#F97583',
+        purple: '#7160E8'
     }
-    let body = $" ($in) " | to_ansi (ansi --escape {fg: $font_color, bg: $main_color})
-    $start + $body + $end
-}
 
-def to_left_powerline_style [main_color, font_color] {
-    let start = "" | to_ansi (ansi --escape {fg: $main_color})
-    let end = "" | to_ansi (ansi --escape {fg: $main_color attr: r})
-    if $in == '' {
-        return ($start + $end)
+    def to_ansi [style] {
+        $'($style)($in)(ansi reset)'
     }
-    let body = $" ($in) " | to_ansi (ansi --escape {fg: $font_color, bg: $main_color})
-    $start + $body + $end
-}
 
-def create_user_prompt [] {
-    let user = whoami
-    let host = hostname
-    $'($user)@($host)' | to_ansi (ansi white)
-}
-
-def create_dir_prompt [] {
-    let dir = match (do --ignore-shell-errors { $env.PWD | path relative-to $nu.home-path }) {
-        null => $env.PWD
-        '' => '~'
-        $relative_pwd => ([~ $relative_pwd] | path join)
+    def to_right_powerline_style [main_color, font_color] {
+        let start = "" | to_ansi (ansi --escape {fg: $main_color attr: r})
+        let end = "" | to_ansi (ansi --escape {fg: $main_color})
+        if $in == '' {
+            return ($start + $end)
+        }
+        let body = $" ($in) " | to_ansi (ansi --escape {fg: $font_color, bg: $main_color})
+        $start + $body + $end
     }
-    $dir | to_right_powerline_style $vetus.blue $vetus.black
+
+    def to_left_powerline_style [main_color, font_color] {
+        let start = "" | to_ansi (ansi --escape {fg: $main_color})
+        let end = "" | to_ansi (ansi --escape {fg: $main_color attr: r})
+        if $in == '' {
+            return ($start + $end)
+        }
+        let body = $" ($in) " | to_ansi (ansi --escape {fg: $font_color, bg: $main_color})
+        $start + $body + $end
+    }
+
+    def create_user_prompt [] {
+        let user = whoami
+        let host = hostname
+        $'($user)@($host)' | to_ansi (ansi white)
+    }
+
+    def create_dir_prompt [] {
+        let dir = match (do --ignore-errors { $env.PWD | path relative-to $nu.home-path }) {
+            null => $env.PWD
+            '' => '~'
+            $relative_pwd => ([~ $relative_pwd] | path join)
+        }
+        $dir | to_right_powerline_style $vetus.blue $vetus.black
+    }
+
+    def create_git_prompt [] {
+        let branch = git branch --show-current err> (std null-device) | if $env.LAST_EXIT_CODE == 0 {
+            $in
+        } else ''
+        $branch | to_right_powerline_style $vetus.green $vetus.black
+    }
+
+    def create_mem_prompt [] {
+        let total_mem = sys mem | get total
+        let used_mem = sys mem | get used
+        let mem = if $used_mem / $total_mem > 0.5 {
+            $used_mem | into string
+        } else ''
+        $mem | to_right_powerline_style $vetus.purple $vetus.white
+    }
+
+    def create_time_prompt [] {
+        let time = (date now | format date '%H:%M:%S')
+        let duration_ms = $env.CMD_DURATION_MS | into int
+        let duration = if $duration_ms < 1000 {
+            $'($duration_ms)ms'
+        } else $'($duration_ms / 1000)s'
+        $time + ' ' + $duration | to_left_powerline_style $vetus.yellow $vetus.black
+    }
+
+    def create_exit_code_prompt [] {
+        let last_exit_code = $env.LAST_EXIT_CODE
+        if $last_exit_code != 0 {
+            $last_exit_code | to_ansi (ansi --escape { fg : $vetus.red })
+        } else ''
+    }
+
+    export def create_left_prompt [] {
+        let user = create_user_prompt
+        let dir = create_dir_prompt
+        let git = create_git_prompt
+        let mem = create_mem_prompt
+        '  ' + $user + ' ' + $dir + $git + $mem + "\n\n"
+    }
+
+    export def create_right_prompt [] {
+        let exit_code = create_exit_code_prompt
+        let time = create_time_prompt
+        if $exit_code != '' {
+            $time + ' ' + $exit_code
+        } else $time
+    }
 }
 
-def create_git_prompt [] {
-    let branch = git branch --show-current err> (std null-device) | if $env.LAST_EXIT_CODE == 0 {
-        $in
-    } else ''
-    $branch | to_right_powerline_style $vetus.green $vetus.black
-}
-
-def create_mem_prompt [] {
-    let total_mem = sys mem | get total
-    let used_mem = sys mem | get used
-    let mem = if $used_mem / $total_mem > 0.5 {
-        $used_mem | into string
-    } else ''
-    $mem | to_right_powerline_style $vetus.purple $vetus.white
-}
-
-def create_time_prompt [] {
-    let time = (date now | format date '%H:%M:%S')
-    let duration_ms = $env.CMD_DURATION_MS | into int
-    let duration = if $duration_ms < 1000 {
-        $'($duration_ms)ms'
-    } else $'($duration_ms / 1000)s'
-    $time + ' ' + $duration | to_left_powerline_style $vetus.yellow $vetus.black
-}
-
-def create_exit_code_prompt [] {
-    let last_exit_code = $env.LAST_EXIT_CODE
-    if $last_exit_code != 0 {
-        $last_exit_code | to_ansi (ansi --escape { fg : $vetus.red })
-    } else ''
-}
-
-def create_left_prompt [] {
-    let user = create_user_prompt
-    let dir = create_dir_prompt
-    let git = create_git_prompt
-    let mem = create_mem_prompt
-    '  ' + $user + ' ' + $dir + $git + $mem + "\n\n"
-}
-
-def create_right_prompt [] {
-    let exit_code = create_exit_code_prompt
-    let time = create_time_prompt
-    if $exit_code != '' {
-        $time + ' ' + $exit_code
-    } else $time
-}
-
-$env.PROMPT_COMMAND = {|| create_left_prompt }
-$env.PROMPT_COMMAND_RIGHT = {|| create_right_prompt }
+use prompt
+$env.PROMPT_COMMAND = {|| prompt create_left_prompt }
+$env.PROMPT_COMMAND_RIGHT = {|| prompt create_right_prompt }
 $env.PROMPT_INDICATOR = {|| '❯ ' }
 $env.PROMPT_INDICATOR_VI_INSERT = {|| ': ' }
 $env.PROMPT_INDICATOR_VI_NORMAL = {|| '❯ ' }
