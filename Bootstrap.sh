@@ -48,7 +48,7 @@ create_symbolic_link "$user_dir/.vimrc" ".vimrc"
 create_symbolic_link "$user_dir/.ideavimrc" ".ideavimrc"
 create_symbolic_link "$user_dir/.config" ".config"
 create_symbolic_link "$user_dir/.gitconfig" ".gitconfig"
-create_symbolic_link "$user_dir/.ssh/config" "SSHConfig"
+create_symbolic_link "$user_dir/.ssh/config" "ssh_config"
 echo ""
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
