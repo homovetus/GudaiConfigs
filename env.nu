@@ -52,7 +52,7 @@ module prompt {
 
     def create_git_prompt [] {
         let branch = git branch --show-current err> (std null-device) | if $env.LAST_EXIT_CODE == 0 {
-            $in
+            $" ($in)"
         } else ''
         $branch | to_right_powerline_style $vetus.green $vetus.black
     }
