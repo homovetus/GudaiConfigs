@@ -18,7 +18,7 @@ return {
 				end,
 			})
 		end,
-		build = ":MasonInstall htmlhint oxlint ruff",
+		build = ":MasonInstall clang-format htmlhint oxlint prettier ruff stylua",
 	},
 	{
 		"neovim/nvim-lspconfig",
