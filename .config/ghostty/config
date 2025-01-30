@@ -1,3 +1,4 @@
 cursor-style = block
 font-family = Rec Mono Duotone
+theme = dark:catppuccin-frappe,light:catppuccin-latte
 
