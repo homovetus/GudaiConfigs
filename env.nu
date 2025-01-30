@@ -51,10 +51,12 @@ module prompt {
     }
 
     def create_git_prompt [] {
-        let branch = git branch --show-current err> (std null-device) | if $env.LAST_EXIT_CODE == 0 {
-            $" ($in)"
-        } else ''
-        $branch | to_right_powerline_style $vetus.green $vetus.black
+        let ret = git branch --show-current | complete
+        if $ret.exit_code == 0 {
+            $" ($ret.stdout | str trim)"
+        } else {
+            ''
+        } | to_right_powerline_style $vetus.green $vetus.black
     }
 
     def create_mem_prompt [] {
