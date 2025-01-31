@@ -62,10 +62,11 @@ module prompt {
     def create_mem_prompt [] {
         let total_mem = sys mem | get total
         let used_mem = sys mem | get used
-        let mem = if $used_mem / $total_mem > 0.5 {
+        if $used_mem / $total_mem > 0.5 {
             $used_mem | into string
-        } else ''
-        $mem | to_right_powerline_style $vetus.purple $vetus.white
+        } else {
+            ''
+        } | to_right_powerline_style $vetus.purple $vetus.white
     }
 
     def create_time_prompt [] {
