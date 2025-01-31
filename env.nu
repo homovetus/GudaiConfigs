@@ -37,8 +37,8 @@ module prompt {
 
     def create_user_prompt [] {
         let user = whoami
-        let host = hostname
-        $'($user)@($host)' | to_ansi (ansi white)
+        let host = hostname -s
+        $'($user)@($host)' | to_ansi (ansi default)
     }
 
     def create_dir_prompt [] {
