@@ -37,7 +37,10 @@ module prompt {
 
     def create_user_prompt [] {
         let user = whoami
-        let host = hostname -s
+        let host = match (sys host | get name) {
+            'Windows' => hostname
+            _ => (hostname -s)
+        }
         $'($user)@($host)' | to_ansi (ansi default)
     }
 
