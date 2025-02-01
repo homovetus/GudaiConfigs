@@ -75,14 +75,16 @@ module prompt {
         let duration = if $duration_ms < 1000 {
             $'($duration_ms)ms'
         } else $'($duration_ms / 1000)s'
-        $time + ' ' + $duration | to_left_powerline_style $vetus.yellow $vetus.black
+        $duration + ' ' + $time | to_left_powerline_style $vetus.yellow $vetus.black
     }
 
     def create_exit_code_prompt [] {
         let last_exit_code = $env.LAST_EXIT_CODE
         if $last_exit_code != 0 {
-            $last_exit_code | to_ansi (ansi --escape { fg : $vetus.red })
-        } else ''
+            $last_exit_code
+        } else {
+            ''
+        } | to_left_powerline_style $vetus.red $vetus.white
     }
 
     export def create_left_prompt [] {
@@ -97,7 +99,7 @@ module prompt {
         let exit_code = create_exit_code_prompt
         let time = create_time_prompt
         if $exit_code != '' {
-            $time + ' ' + $exit_code
+            $time + $exit_code
         } else $time
     }
 }
