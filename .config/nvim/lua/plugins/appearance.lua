@@ -68,20 +68,6 @@ return {
 		end,
 	},
 	{
-		"EdenEast/nightfox.nvim",
-		lazy = false,
-		priority = 1000,
-		init = function()
-			vim.opt.termguicolors = true
-		end,
-		opts = {
-			options = {
-				terminal_colors = false,
-			},
-		},
-		enabled = false,
-	},
-	{
 		"folke/tokyonight.nvim",
 		lazy = false,
 		priority = 1000,
@@ -92,6 +78,5 @@ return {
 		opts = {
 			terminal_colors = false,
 		},
-		-- enabled = false,
 	},
 }

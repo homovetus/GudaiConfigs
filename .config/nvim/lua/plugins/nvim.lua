@@ -9,7 +9,6 @@ return {
 		},
 		opts = {
 			options = {
-				close_command = ":bn|bd#",
 				diagnostics = "nvim_lsp",
 				offsets = {
 					{
