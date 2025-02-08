@@ -95,7 +95,7 @@ module prompt {
         let dir = create_dir_prompt
         let git = create_git_prompt
         let mem = create_mem_prompt
-        '  ' + $user + ' ' + $dir + $git + $mem + "\n\n"
+        '  ' + $user + ' ' + $dir + $git + $mem + "\n"
     }
 
     export def create_right_prompt [] {
