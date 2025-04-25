@@ -1,17 +1,15 @@
 alias d="dirs -v"
-alias la="ls -a"
-alias ll="ls -l"
-alias lla="ls -la"
+alias ll="ls -la"
 alias ls="ls --color=auto"
 for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
 setopt AUTO_CD
 setopt AUTO_PUSHD
 setopt COMPLETE_IN_WORD
-setopt PUSHD_IGNORE_DUPS
-setopt HIST_SAVE_NO_DUPS
-setopt HIST_IGNORE_DUPS
 setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_DUPS
+setopt HIST_SAVE_NO_DUPS
+setopt PUSHD_IGNORE_DUPS
 setopt SHARE_HISTORY
 
 autoload -Uz compinit && compinit
