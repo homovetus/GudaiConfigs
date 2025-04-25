@@ -44,16 +44,16 @@ function copy_ssh_keys {
 
 # Common Files
 echo "Files for all platforms:"
-create_symbolic_link "$user_dir/.vimrc" ".vimrc"
-create_symbolic_link "$user_dir/.ideavimrc" ".ideavimrc"
 create_symbolic_link "$user_dir/.config" ".config"
 create_symbolic_link "$user_dir/.gitconfig" ".gitconfig"
+create_symbolic_link "$user_dir/.ideavimrc" ".ideavimrc"
 create_symbolic_link "$user_dir/.ssh/config" "ssh_config"
+create_symbolic_link "$user_dir/.vimrc" ".vimrc"
 echo ""
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
         echo "Files for Mac:"
-        create_symbolic_link "$user_dir/.zshrc" ".zshrc"
         copy_ssh_keys "$user_dir/Documents/SSHKeys/homovetus"
         copy_ssh_keys "$user_dir/Documents/SSHKeys/homovetus.pub"
+        create_symbolic_link "$user_dir/.zshrc" ".zshrc"
 fi
