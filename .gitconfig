@@ -1,5 +1,4 @@
 [core]
-	autocrlf = false
 	editor = vim
 [diff]
 	external = difft
