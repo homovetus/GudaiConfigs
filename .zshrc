@@ -1,6 +1,6 @@
 alias d="dirs -v"
 alias ll="ls -la"
-alias ls="ls --color=auto"
+alias ls="ls --color"
 for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
 setopt AUTO_CD
