@@ -1,4 +1,5 @@
 ﻿#!/usr/bin/env pwsh
+
 param (
     [switch]$Debug = $false
 )
