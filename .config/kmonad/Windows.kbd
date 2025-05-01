@@ -1,0 +1,73 @@
+(defcfg
+	input		(low-level-hook)
+	output		(send-event-sink)
+	fallthrough	true
+)
+(defalias
+	nav	(layer-toggle navigation)
+	sym	(layer-toggle symbols)
+	func	(layer-toggle function)
+	qwe	(layer-switch qwerty)
+	main	(layer-switch main)
+
+	sftA	(tap-hold-next-release 200 a lsft)
+	ctlS	(tap-hold-next-release 200 s lctl)
+	metD	(tap-hold-next-release 200 d lmet)
+	altF	(tap-hold-next-release 200 f lalt)
+	symG	(tap-hold-next-release 200 g @sym)
+
+	symH	(tap-hold-next-release 200 h @sym)
+	altJ	(tap-hold-next-release 200 j ralt)
+	metK	(tap-hold-next-release 200 k rmet)
+	ctlL	(tap-hold-next-release 200 l rctl)
+	sft;	(tap-hold-next-release 200 ; rsft)
+
+	sftF5	(tap-hold-next-release 200 f5 lsft)
+	ctlF6	(tap-hold-next-release 200 f6 lctl)
+	metF7	(tap-hold-next-release 200 f7 lmet)
+	altF8	(tap-hold-next-release 200 f8 lalt)
+
+	alt4	(tap-hold-next-release 200 4 ralt)
+	met5	(tap-hold-next-release 200 5 rmet)
+	ctl6	(tap-hold-next-release 200 6 rctl)
+	sft.	(tap-hold-next-release 200 . rsft)
+
+	navSpc	(tap-hold-next-release 200 spc @nav)
+	fnEsc	(tap-hold-next-release 200 esc @func)
+)
+(defsrc
+	tab	q	w	e	r	t		y	u	i	o	p	[
+	caps	a	s	d	f	g		h	j	k	l	;	'	ret
+	lsft	z	x	c	v	b		n	m	,	.	/	rsft
+			lalt				spc				ralt	rght
+)
+(deflayer main
+	tab	q	w	e	r	t		y	u	i	o	p	grv
+	bspc	@sftA	@ctlS	@metD	@altF	@symG		@symH	@altJ	@metK	@ctlL	@sft;	'	ret
+	lsft	z	x	c	v	b		n	m	,	.	/	rsft
+			@fnEsc				@navSpc				@fnEsc	@qwe
+)
+(deflayer navigation
+	_	1	2	3	4	5		6	7	8	9	0	del
+	_	lsft	lctl	lmet	lalt	pgup		home	left	down	up	rght	end	_
+	_	_	_	_	_	pgdn		\_	+	-	=	\	|
+			@fnEsc				spc				@fnEsc	@qwe
+)
+(deflayer symbols
+	_	!	@	#	$	%		^	&	*	\(	\)	_
+	_	lsft	lctl	lmet	lalt	caps		nlck	{	[	]	}	_	_
+	_	_	_	_	_	_		\_	+	-	=	\	|
+			@fnEsc				spc				@fnEsc	@qwe
+)
+(deflayer function
+	_	f1	f2	f3	f4	mute		prev	7	8	9	-	/
+	_	@sftF5	@ctlF6	@metF7	@altF8	volu		pp	@alt4	@met5	@ctl6	@sft.	_	_
+	_	f9	f10	f11	f12	vold		next	1	2	3	+	*
+			@fnEsc				0				@fnEsc	@qwe
+)
+(deflayer qwerty
+	tab	q	w	e	r	t		y	u	i	o	p	[
+	bspc	a	s	d	f	g		h	j	k	l	;	'	ret
+	lsft	z	x	c	v	b		n	m	,	.	/	rsft
+			lalt				spc				ralt	@main
+)
