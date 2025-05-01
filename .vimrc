@@ -36,6 +36,7 @@ let g:netrw_winsize=25  " 25 %
 nnoremap <silent> <S-Tab> :bprevious<CR>
 nnoremap <silent> <Tab> :bnext<CR>
 nnoremap <silent> <leader>t :Lexplore<CR>
+nnoremap <silent> <leader>w :write<CR>
 
 colorscheme wildcharm
 

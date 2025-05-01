@@ -23,6 +23,7 @@ vim.g.netrw_winsize = -20
 -- keymaps
 vim.keymap.set("n", "<esc>", "<cmd>nohlsearch<cr>", { noremap = true })
 vim.keymap.set("n", "<leader>bd", "<cmd>bn|bd#<cr>", { noremap = true })
+vim.keymap.set("n", "<leader>w", "<cmd>write<cr>", { noremap = true })
 vim.keymap.set("n", "<s-tab>", "<cmd>bprevious<cr>", { noremap = true })
 vim.keymap.set("n", "<tab>", "<cmd>bnext<cr>", { noremap = true })
 vim.keymap.set("t", "<esc><esc>", [[<c-\><c-n>]], { noremap = true })
