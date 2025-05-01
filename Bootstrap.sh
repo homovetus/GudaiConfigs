@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-user_dir=$HOME
 debug=false
 
 while [[ $# -gt 0 ]]; do
@@ -32,7 +31,7 @@ function copy_ssh_keys {
         local target="$1"
         local path=""
 
-        path="$user_dir/.ssh/$(basename "$target")"
+        path="$HOME/.ssh/$(basename "$target")"
         target=$(realpath "$target")
 
         if [ "$debug" = true ]; then
@@ -44,16 +43,16 @@ function copy_ssh_keys {
 
 # Common Files
 echo "Files for all platforms:"
-create_symbolic_link "$user_dir/.config" ".config"
-create_symbolic_link "$user_dir/.gitconfig" ".gitconfig"
-create_symbolic_link "$user_dir/.ideavimrc" ".ideavimrc"
-create_symbolic_link "$user_dir/.ssh/config" "ssh_config"
-create_symbolic_link "$user_dir/.vimrc" ".vimrc"
+create_symbolic_link "$HOME/.config" ".config"
+create_symbolic_link "$HOME/.gitconfig" ".gitconfig"
+create_symbolic_link "$HOME/.ideavimrc" ".ideavimrc"
+create_symbolic_link "$HOME/.ssh/config" "ssh_config"
+create_symbolic_link "$HOME/.vimrc" ".vimrc"
 echo ""
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
         echo "Files for Mac:"
-        copy_ssh_keys "$user_dir/Documents/SSHKeys/homovetus"
-        copy_ssh_keys "$user_dir/Documents/SSHKeys/homovetus.pub"
-        create_symbolic_link "$user_dir/.zshrc" ".zshrc"
+        copy_ssh_keys "$HOME/Documents/SSHKeys/homovetus"
+        copy_ssh_keys "$HOME/Documents/SSHKeys/homovetus.pub"
+        create_symbolic_link "$HOME/.zshrc" ".zshrc"
 fi
