@@ -1,10 +1,16 @@
 Include ~/.orbstack/ssh/config
 
 Host deck
-  HostName 10.110.148.4
-  Port 1140
+  HostName 192.168.1.17
+  SetEnv TERM=xterm-256color
   User deck
 
 Host github.com
   AddKeysToAgent yes
   IdentityFile ~/.ssh/homovetus
+
+Host tokyo
+  HostName 167.179.100.199
+  IdentityFile ~/.ssh/homovetus
+  SetEnv TERM=xterm-256color
+  User linuxuser
