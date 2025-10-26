@@ -34,46 +34,47 @@
 
 	navSpc	(tap-hold-next-release 200 spc @nav)
 	fnEsc	(tap-hold-next-release 200 esc @func)
+	fnTab	(tap-hold-next-release 200 tab @func)
 )
 (defsrc
 	f1	f2	f3	f4	f5	f6		f7	f8	f9	f10	f11	f12
-	tab	q	w	e	r	t		y	u	i	o	p	[
-	caps	a	s	d	f	g		h	j	k	l	;	'
-	lsft	z	x	c	v	b		n	m	,	.	/	rsft
+		q	w	e	r	t		y	u	i	o	p
+		a	s	d	f	g		h	j	k	l	;
+		z	x	c	v	b		n	m	,	.	/
 			lmet				spc			rmet	ralt
 )
 (deflayer colemak
 	brdn	brup	mctl	spot	dict	blup		prev	pp	next	mute	vold	volu
-	tab	q	w	f	p	g		j	l	u	y	;	grv
-	bspc	@sftA	@ctlR	@metS	@altT	@symD		@symH	@altN	@metE	@ctlI	@sftO	ret
-	lsft	z	x	c	v	b		k	m	,	.	/	'
-			@fnEsc				@navSpc			@fnEsc	@qweAlt
+		q	w	f	p	g		j	l	u	y	;
+		@sftA	@ctlR	@metS	@altT	@symD		@symH	@altN	@metE	@ctlI	@sftO
+		z	x	c	v	b		k	m	,	.	/
+			@fnEsc				@navSpc			@fnTab	@qweAlt
 )
 (deflayer navigation
 	_	_	_	_	_	_		_	_	_	_	_	_
-	_	1	2	3	4	5		6	7	8	9	0	del
-	_	lsft	lctl	lmet	lalt	pgup		home	left	down	up	rght	end
-	_	_	_	_	_	pgdn		\_	+	-	=	\	|
-			@fnEsc				spc			@fnEsc	@qweAlt
+		1	2	3	4	5		6	7	8	9	0
+		lsft	lctl	lmet	lalt	bspc		ret	left	down	up	rght
+		home	pgdn	pgup	end	ret		`	'	-	=	\
+			@fnEsc				_			@fnTab	@qweAlt
 )
 (deflayer sym
 	_	_	_	_	_	_		_	_	_	_	_	_
-	_	!	@	#	$	%		^	&	*	\(	\)	_
-	_	lsft	lctl	lmet	lalt	caps		nlck	{	[	]	}	ret
-	_	_	_	_	_	_		\_	+	-	=	\	|
-			@fnEsc				spc			@fnEsc	@qweAlt
+		!	@	#	$	%		^	&	*	\(	\)
+		lsft	lctl	lmet	lalt	caps		nlck	{	[	]	}
+		_	_	_	_	_		~	"	\_	+	|
+			@fnEsc				_			@fnTab	@qweAlt
 )
 (deflayer func
 	_	_	_	_	_	_		_	_	_	_	_	_
-	_	f1	f2	f3	f4	mute		prev	7	8	9	-	/
-	_	@sftF5	@ctlF6	@metF7	@altF8	volu		pp	@alt4	@met5	@ctl6	@sft.	ret
-	_	f9	f10	f11	f12	vold		next	1	2	3	+	*
-			@fnEsc				0			@fnEsc	@qweAlt
+		f1	f2	f3	f4	mute		prev	7	8	9	-
+		@sftF5	@ctlF6	@metF7	@altF8	volu		pp	@alt4	@met5	@ctl6	@sft.
+		f9	f10	f11	f12	vold		next	1	2	3	+
+			@fnEsc				0			@fnTab	@qweAlt
 )
 (deflayer qwerty
 	brdn	brup	mctl	spot	dict	blup		prev	pp	next	mute	vold	volu
-	tab	q	w	e	r	t		y	u	i	o	p	[
-	bspc	a	s	d	f	g		h	j	k	l	;	'
-	lsft	z	x	c	v	b		n	m	,	.	/	rsft
+		q	w	e	r	t		y	u	i	o	p
+		a	s	d	f	g		h	j	k	l	;
+		z	x	c	v	b		n	m	,	.	/
 			lmet				spc			rmet	@colAlt
 )
