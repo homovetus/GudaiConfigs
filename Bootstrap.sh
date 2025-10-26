@@ -70,4 +70,5 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 	printf "\nFiles for Mac:\n"
 	copy_ssh_keys	"$HOME/Documents/SSHKeys/homovetus"
 	copy_ssh_keys	"$HOME/Documents/SSHKeys/homovetus.pub"
+	create_symbolic_link	"Surge.conf"	"$HOME/Library/Application Support/Surge/Profiles/Surge.conf"
 fi
