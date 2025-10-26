@@ -1,4 +1,5 @@
 alias d="dirs -v"
+alias grep='grep -E'
 alias ll="ls -la"
 alias ls="ls --color"
 for index ({1..9}) alias "$index"="cd +${index}"; unset index
