@@ -1,49 +1,11 @@
-vim.o.autoread = true
-vim.o.clipboard = "unnamedplus"
-vim.o.relativenumber = true
-vim.o.updatetime = 500
-vim.o.wrap = false
-
-vim.o.expandtab = true
-vim.o.smartindent = true
-
--- search
-vim.o.hlsearch = true
-vim.o.ignorecase = true
-vim.o.incsearch = true
-vim.o.smartcase = true
-
-vim.g.mapleader = " "
-vim.g.netrw_banner = 0
-vim.g.netrw_browse_split = 4
-vim.g.netrw_list_hide = [[^\(ntuser\|NTUSER\)\..*]]
-vim.g.netrw_liststyle = 2
-vim.g.netrw_winsize = -20
-
--- keymaps
-vim.keymap.set("n", "<esc>", "<cmd>nohlsearch<cr>", { noremap = true })
-vim.keymap.set("n", "<leader>bd", "<cmd>bn|bd#<cr>", { noremap = true })
-vim.keymap.set("n", "<leader>w", "<cmd>write<cr>", { noremap = true })
-vim.keymap.set("n", "<s-tab>", "<cmd>bprevious<cr>", { noremap = true })
-vim.keymap.set("n", "<tab>", "<cmd>bnext<cr>", { noremap = true })
-vim.keymap.set("t", "<esc><esc>", [[<c-\><c-n>]], { noremap = true })
-
--- lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-	local out = vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"--branch=stable",
-		lazyrepo,
-		lazypath,
-	})
+	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
 	if vim.v.shell_error ~= 0 then
 		vim.api.nvim_echo({
 			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-			{ out, "WarningMsg" },
+			{ out,                            "WarningMsg" },
 			{ "\nPress any key to exit..." },
 		}, true, {})
 		vim.fn.getchar()
@@ -51,8 +13,48 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	end
 end
 vim.opt.rtp:prepend(lazypath)
-require("lazy").setup("plugins", {
-	dev = { path = "~/Sources" },
-	rocks = { enabled = false },
-	ui = { border = "rounded" },
-})
+
+vim.g.mapleader = " "
+
+vim.o.clipboard = "unnamedplus"
+vim.o.ignorecase = true
+vim.o.smartcase = true
+
+vim.keymap.set("n", "<esc>", "<cmd>nohlsearch<cr>", { noremap = true })
+vim.keymap.set("n", "<leader>w", "<cmd>write<cr>", { noremap = true })
+
+if vim.g.vscode then
+	vim.keymap.set("n",
+		"<leader>f",
+		"<cmd>lua require('vscode').call('editor.action.formatDocument')<cr>",
+		{ noremap = true })
+	require("lazy").setup({
+		spec = {
+			{ import = "gui" },
+		},
+		checker = { enabled = true },
+	})
+else
+	vim.o.autoread = true
+	vim.o.wrap = false
+
+	vim.o.hlsearch = true
+	vim.o.incsearch = true
+
+	vim.o.expandtab = true
+	vim.o.shiftwidth = 4
+	vim.o.softtabstop = 4
+
+	vim.o.relativenumber = true
+
+	require("lazy").setup({
+		spec = {
+			{ import = "tui" },
+		},
+		dev = { path = "~/Sources" },
+		rocks = { enabled = false },
+		ui = { border = "rounded" },
+		install = { colorscheme = { "default" } },
+		checker = { enabled = true },
+	})
+end
