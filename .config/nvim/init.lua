@@ -14,20 +14,23 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Shared configuration
 vim.g.mapleader = " "
 
-vim.o.clipboard = "unnamedplus"
-vim.o.ignorecase = true
-vim.o.smartcase = true
+vim.opt.clipboard = "unnamedplus"
 
-vim.keymap.set("n", "<esc>", "<cmd>nohlsearch<cr>", { noremap = true })
-vim.keymap.set("n", "<leader>w", "<cmd>write<cr>", { noremap = true })
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
+vim.keymap.set("n", "<esc>", "<cmd>nohlsearch<cr>", { desc = "Clear search highlights" })
+vim.keymap.set("n", "<leader>w", "<cmd>write<cr>", { desc = "Save file" })
 
 if vim.g.vscode then
-	vim.keymap.set("n",
-		"<leader>f",
-		"<cmd>lua require('vscode').call('editor.action.formatDocument')<cr>",
-		{ noremap = true })
+	-- VSCode Neovim configuration
+	vim.keymap.set("n", "<leader>f", "<cmd>lua require('vscode').call('editor.action.formatDocument')<cr>")
+	vim.keymap.set("n", "<leader>t", "<cmd>lua require('vscode').call('workbench.view.explorer')<cr>")
+	vim.keymap.set("n", "<leader>;", "<cmd>lua require('vscode').call('workbench.action.toggleAuxiliaryBar')<cr>")
+
 	require("lazy").setup({
 		spec = {
 			{ import = "gui" },
@@ -35,26 +38,29 @@ if vim.g.vscode then
 		checker = { enabled = true },
 	})
 else
-	vim.o.autoread = true
-	vim.o.wrap = false
+	-- Native Neovim configuration
+	vim.opt.autoread = true
+	vim.opt.relativenumber = true
+	vim.opt.wrap = false
 
-	vim.o.hlsearch = true
-	vim.o.incsearch = true
+	vim.opt.expandtab = true
+	vim.opt.shiftwidth = 4
+	vim.opt.softtabstop = 4
 
-	vim.o.expandtab = true
-	vim.o.shiftwidth = 4
-	vim.o.softtabstop = 4
+	vim.opt.hlsearch = true
+	vim.opt.incsearch = true
 
-	vim.o.relativenumber = true
+	vim.keymap.set("n", "gt", "<cmd>tabnext<cr>", { desc = "Next tab" })
+	vim.keymap.set("n", "gT", "<cmd>tabprevious<cr>", { desc = "Previous tab" })
 
 	require("lazy").setup({
 		spec = {
 			{ import = "tui" },
 		},
+		checker = { enabled = true },
 		dev = { path = "~/Sources" },
+		install = { colorscheme = { "default" } },
 		rocks = { enabled = false },
 		ui = { border = "rounded" },
-		install = { colorscheme = { "default" } },
-		checker = { enabled = true },
 	})
 end
