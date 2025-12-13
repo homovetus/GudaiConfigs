@@ -18,7 +18,6 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 
 vim.opt.clipboard = "unnamedplus"
-
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 

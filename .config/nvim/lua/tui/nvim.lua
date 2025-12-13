@@ -4,7 +4,7 @@ return {
 		dependencies = "nvim-tree/nvim-web-devicons",
 		event = "BufWinEnter",
 		keys = {
-			{ "<leader>bp", "<cmd>BufferLinePick<cr>", desc = "Buffer Pick" },
+			{ "<leader>bp", "<cmd>BufferLinePick<cr>",      desc = "Buffer Pick" },
 			{ "<leader>bc", "<cmd>BufferLinePickClose<cr>", desc = "Buffer Pick Close" },
 		},
 		opts = {
@@ -65,16 +65,12 @@ return {
 		"folke/flash.nvim",
 		event = "VeryLazy",
 		keys = {
-			{
-				"s",
-				function()
-					require("flash").jump()
-				end,
-				desc = "Flash",
-				mode = { "n", "x", "o" },
-			},
+			{ "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter", },
+			{ "r", mode = { "x", "o" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+			{ "s", mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash", },
 		},
 		opts = {
+			labels = "arstdhneioqwfpgjluyzxcvbkm",
 			label = { uppercase = false },
 		},
 	},
@@ -98,14 +94,14 @@ return {
 			"nvim-lua/plenary.nvim",
 		},
 		keys = {
-			{ "<leader>sb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
-			{ "<leader>sc", "<cmd>Telescope commands<cr>", desc = "Commands" },
+			{ "<leader>sb", "<cmd>Telescope buffers<cr>",     desc = "Buffers" },
+			{ "<leader>sc", "<cmd>Telescope commands<cr>",    desc = "Commands" },
 			{ "<leader>sd", "<cmd>Telescope diagnostics<cr>", desc = "Diagnostics" },
-			{ "<leader>sf", "<cmd>Telescope find_files<cr>", desc = "Find files" },
-			{ "<leader>sg", "<cmd>Telescope live_grep<cr>", desc = "Grep" },
-			{ "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help tags" },
-			{ "<leader>sm", "<cmd>Telescope marks<cr>", desc = "Marks" },
-			{ "<leader>so", "<cmd>Telescope oldfiles<cr>", desc = "Old files" },
+			{ "<leader>sf", "<cmd>Telescope find_files<cr>",  desc = "Find files" },
+			{ "<leader>sg", "<cmd>Telescope live_grep<cr>",   desc = "Grep" },
+			{ "<leader>sh", "<cmd>Telescope help_tags<cr>",   desc = "Help tags" },
+			{ "<leader>sm", "<cmd>Telescope marks<cr>",       desc = "Marks" },
+			{ "<leader>so", "<cmd>Telescope oldfiles<cr>",    desc = "Old files" },
 		},
 		opts = {
 			extensions = {
