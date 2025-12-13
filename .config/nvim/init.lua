@@ -17,12 +17,13 @@ vim.opt.rtp:prepend(lazypath)
 -- Shared configuration
 vim.g.mapleader = " "
 
-vim.opt.clipboard = "unnamedplus"
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 vim.keymap.set("n", "<esc>", "<cmd>nohlsearch<cr>", { desc = "Clear search highlights" })
 vim.keymap.set("n", "<leader>w", "<cmd>write<cr>", { desc = "Save file" })
+vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "Yank to system clipboard" })
+vim.keymap.set({ "n", "v" }, "<leader>p", '"+p', { desc = "Paste from system clipboard" })
 
 if vim.g.vscode then
 	-- VSCode Neovim configuration
