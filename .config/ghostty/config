@@ -1,3 +1,7 @@
 cursor-style = block
 font-family = Rec Mono Duotone
-theme = dark:Catppuccin Frappe,light:Catppuccin Latte
+theme = dark:Xcode Dark,light:Xcode Light
+window-height = 30
+window-width = 120
+window-padding-x = 8
+window-padding-balance = true
