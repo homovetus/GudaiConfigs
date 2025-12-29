@@ -1,5 +1,6 @@
-[core]
-	editor = vim
+[alias]
+	dshow = show --ext-diff
+	dlog = log --patch --ext-diff
 [diff]
 	external = difft
 [user]
