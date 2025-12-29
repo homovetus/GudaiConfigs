@@ -1,5 +1,5 @@
 alias d="dirs -v"
-alias grep='grep -E'
+alias ge='grep -E'
 alias ll="ls -la"
 alias ls="ls --color"
 for index ({1..9}) alias "$index"="cd +${index}"; unset index
@@ -50,5 +50,9 @@ bindkey -M viins '^X^U' undo
 bindkey -M viins '^Y' yank
 bindkey -M visual S add-surround
 bindkey -v
+
+export FZF_DEFAULT_OPTS="--preview 'fzf-preview.sh {}' --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+export FZF_CTRL_R_OPTS="--preview-window hidden"
+source <(fzf --zsh)
 
 eval "$(starship init zsh)"
