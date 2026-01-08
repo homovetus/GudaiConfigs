@@ -1,0 +1,5 @@
+git:
+  pagers:
+    - externalDiffCommand: difft --display=inline
+gui:
+  nerdFontsVersion: "3"

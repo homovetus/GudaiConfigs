@@ -172,6 +172,7 @@ install_config "ssh_config"  "$HOME/.ssh/config"
 if [[ "$OSTYPE" == "darwin"* ]]; then
     echo "---------------------------------------------------"
     log_info "Detected macOS..."
+    install_config "lazygit.yml" "$HOME/Library/Application Support/lazygit/config.yml"
     install_config "Surge.conf" "$HOME/Library/Application Support/Surge/Profiles/Default.conf"
 
     copy_ssh_key "$HOME/Documents/SSHKeys/homovetus"
