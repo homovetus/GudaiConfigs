@@ -1,6 +1,6 @@
 cursor-style = block
 font-family = Rec Mono Duotone
-theme = dark:Xcode Dark,light:Xcode Light
+theme = dark:Monokai Pro,light:Monokai Pro Light Sun
 window-height = 30
 window-width = 120
 window-padding-x = 8
