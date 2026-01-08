@@ -1,7 +1,6 @@
 language en_US
 
 set autoread
-set clipboard=unnamed
 set confirm
 set nowrap
 set omnifunc=syntaxcomplete#Complete
@@ -11,7 +10,6 @@ set showcmd
 set wildmenu
 
 set mouse=a
-set termguicolors
 
 set hlsearch
 set ignorecase
@@ -27,18 +25,22 @@ filetype plugin indent on
 
 syntax enable
 
-map <space> <leader>
-
 let g:netrw_banner=0    " hide banner
 let g:netrw_liststyle=3 " tree view
 let g:netrw_winsize=25  " 25 %
 
+map <space> <leader>
+
 nnoremap <silent> <S-Tab> :bprevious<CR>
 nnoremap <silent> <Tab> :bnext<CR>
+nnoremap <silent> <leader>p "+p
 nnoremap <silent> <leader>t :Lexplore<CR>
 nnoremap <silent> <leader>w :write<CR>
+nnoremap <silent> <leader>y "+y
+nnoremap <silent> <esc> :nohlsearch<CR>
 
-colorscheme wildcharm
+vnoremap <silent> <leader>p "+p
+vnoremap <silent> <leader>y "+y
 
 " autopair {{{
 let g:pair_map={'(':')','[':']','{':'}','"':'"',"'":"'",'<':'>','`':'`',}

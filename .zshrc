@@ -1,4 +1,6 @@
+alias cat="bat"
 alias d="dirs -v"
+alias ff="fzf --preview 'fzf-preview.sh {}'"
 alias ge='grep -E'
 alias ll="ls -la"
 alias ls="ls --color"
@@ -51,8 +53,8 @@ bindkey -M viins '^Y' yank
 bindkey -M visual S add-surround
 bindkey -v
 
-export FZF_DEFAULT_OPTS="--preview 'fzf-preview.sh {}' --bind 'ctrl-/:change-preview-window(down|hidden|)'"
-export FZF_CTRL_R_OPTS="--preview-window hidden"
-source <(fzf --zsh)
+export BAT_THEME="ansi"
+export FZF_DEFAULT_OPTS="--bind 'ctrl-/:change-preview-window(down|hidden|)'"
 
+source <(fzf --zsh)
 eval "$(starship init zsh)"
