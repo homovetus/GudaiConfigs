@@ -42,6 +42,36 @@ nnoremap <silent> <esc> :nohlsearch<CR>
 vnoremap <silent> <leader>p "+p
 vnoremap <silent> <leader>y "+y
 
+" toggleterm {{{
+if has('terminal')
+  let s:term_buf = 0
+  function! s:ToggleTerminal()
+    if s:term_buf > 0 && bufnr('%') == s:term_buf
+      if tabpagenr('$') > 1
+        execute 'tabclose'
+      else
+        execute 'b #'
+      endif
+    else
+      if s:term_buf > 0 && bufexists(s:term_buf)
+        execute 'tabnew'
+        execute 'buffer ' . s:term_buf
+        startinsert
+      else
+        execute 'tabnew'
+        terminal ++curwin
+        setlocal bufhidden=hide
+        let s:term_buf = bufnr('%')
+        startinsert
+      endif
+    endif
+  endfunction
+  nnoremap <silent> <C-\> :call <SID>ToggleTerminal()<CR>
+  inoremap <silent> <C-\> <Esc>:call <SID>ToggleTerminal()<CR>
+  tnoremap <silent> <C-\> <C-\><C-n>:call <SID>ToggleTerminal()<CR>
+endif
+" }}}
+
 " autopair {{{
 let g:pair_map={'(':')','[':']','{':'}','"':'"',"'":"'",'<':'>','`':'`',}
 " set pair baket
