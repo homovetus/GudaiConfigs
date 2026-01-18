@@ -13,6 +13,13 @@ return {
 		},
 	},
 	{
+		"shabaraba/ime-auto.nvim",
+		event = "InsertEnter",
+		opts = {
+			os = "auto", -- OS設定: "auto", "macos", "windows", "linux"
+		}
+	},
+	{
 		"kylechui/nvim-surround",
 		event = "VeryLazy",
 		opts = {},
