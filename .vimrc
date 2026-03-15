@@ -3,6 +3,7 @@ language en_US
 set autoread
 set confirm
 set nowrap
+set number
 set omnifunc=syntaxcomplete#Complete
 set path+=**
 set relativenumber
