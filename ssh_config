@@ -11,7 +11,7 @@ Host BADC0DED
   User core
 
 Host FABACEAE
-  HostName 137.220.61.27
+  HostName 67.230.171.28
   IdentityFile ~/.ssh/homovetus
   SetEnv TERM=xterm-256color
-  User core
+  User root
