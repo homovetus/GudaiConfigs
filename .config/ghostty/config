@@ -1,8 +1,8 @@
 cursor-style = block
-custom-shader = ~/Documents/GudaiConfigs/crt.glsl
 font-family = Rec Mono Duotone
+font-family = Source Han Mono SC
 theme = dark:Monokai Pro,light:Monokai Pro Light Sun
 window-height = 30
-window-width = 120
-window-padding-x = 8
 window-padding-balance = true
+window-padding-x = 8
+window-width = 120

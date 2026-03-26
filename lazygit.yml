@@ -3,3 +3,4 @@ git:
     - externalDiffCommand: difft --display=inline
 gui:
   nerdFontsVersion: "3"
+  scrollHeight: 10
