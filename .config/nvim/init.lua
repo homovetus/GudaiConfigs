@@ -14,9 +14,11 @@ vim.keymap.set("x", "<BS>", "in", { remap = true, desc = "Decrement Treesitter s
 
 if vim.g.vscode then
 	-- VSCode Neovim configuration
+	vim.opt.cmdheight = 25
 	vim.pack.add({
 		"https://github.com/folke/flash.nvim",
 		"https://github.com/kylechui/nvim-surround",
+		"https://github.com/romus204/tree-sitter-manager.nvim",
 		"https://github.com/shabaraba/ime-auto.nvim",
 	})
 
@@ -27,6 +29,10 @@ if vim.g.vscode then
 		},
 	})
 
+	require("tree-sitter-manager").setup({
+		auto_install = true,
+		highlight = {},
+	})
 	vim.keymap.set("n", "<leader>f", "<cmd>lua require('vscode').call('editor.action.formatDocument')<cr>")
 	vim.keymap.set("n", "<leader>t", "<cmd>lua require('vscode').call('workbench.view.explorer')<cr>")
 	vim.keymap.set("n", "<leader>;", "<cmd>lua require('vscode').call('workbench.action.toggleAuxiliaryBar')<cr>")
@@ -48,4 +54,11 @@ else
 
 	vim.keymap.set("n", "gt", "<cmd>tabnext<cr>", { desc = "Next tab" })
 	vim.keymap.set("n", "gT", "<cmd>tabprevious<cr>", { desc = "Previous tab" })
+
+	vim.pack.add({
+		"https://github.com/folke/flash.nvim",
+		"https://github.com/kylechui/nvim-surround",
+		"https://github.com/romus204/tree-sitter-manager.nvim",
+		"https://github.com/shabaraba/ime-auto.nvim",
+	})
 end
